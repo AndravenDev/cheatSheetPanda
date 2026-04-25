@@ -16,13 +16,13 @@ const codeSymbols = [
 // Each card's positioning uses inline style (top/left/right/bottom as pixel strings)
 // so Tailwind's scanner isn't relied on for dynamic class names.
 const cards = [
-  { name: 'Python',       image: '/python.png',            glowColor: 'yellow', size: 'lg' as const, pos: { top: '80px',    left: '60px'   }, rotation: '-8deg',  delay: '0s' },
+  { name: 'Python',       image: '/pythonBetter.png',            glowColor: 'yellow', size: 'lg' as const, pos: { top: '80px',    left: '60px'   }, rotation: '-8deg',  delay: '0s' },
   { name: 'React',        image: '/react.png',      glowColor: 'cyan',   size: 'lg' as const, pos: { top: '30px',    left: '210px'  }, rotation: '4deg',   delay: '0.5s' },
   { name: 'Braces',       icon: 'lucide:braces',           glowColor: 'teal',   size: 'sm' as const, pos: { top: '18px',    left: '410px'  }, rotation: '-4deg',  delay: '1s' },
   { name: 'JavaScript',   icon: 'simple-icons:javascript', glowColor: 'yellow', size: 'lg' as const, pos: { top: '70px',    right: '70px'  }, rotation: '8deg',   delay: '2s' },
   { name: 'Docker',       image: '/docker.png',     glowColor: 'blue',   size: 'lg' as const, pos: { top: '190px',   right: '100px' }, rotation: '-6deg',  delay: '1.2s' },
   { name: 'SQL',          image: '/sql.png',         glowColor: 'blue',   size: 'md' as const, pos: { top: '230px',   left: '80px'   }, rotation: '4deg',   delay: '0.7s' },
-  { name: 'CSS Grid',     image: '/cssGrid.png',           glowColor: 'purple', size: 'lg' as const, pos: { bottom: '170px', left: '130px' }, rotation: '6deg',   delay: '1.7s' },
+  { name: 'CSS Grid',     image: '/python.png',           glowColor: 'purple', size: 'lg' as const, pos: { bottom: '170px', left: '130px' }, rotation: '6deg',   delay: '1.7s' },
   { name: 'Git',          icon: 'simple-icons:git',        glowColor: 'orange', glassTint: 'rgba(30,64,175,0.30)', size: 'lg' as const, pos: { bottom: '90px', left: '58px'  }, rotation: '-4deg',  delay: '0.3s' },
   { name: 'Nginx',        icon: 'simple-icons:nginx',      glowColor: 'green',  size: 'sm' as const, pos: { bottom: '70px', left: '290px' }, rotation: '3deg',   delay: '1s' },
   { name: 'Command',      icon: 'lucide:terminal',         glowColor: 'green',  size: 'sm' as const, pos: { bottom: '160px', right: '120px' }, rotation: '-8deg', delay: '2.2s' },
@@ -86,16 +86,13 @@ const suggestions = [
         </div>
 
         <!-- Central panda mascot -->
-        <!-- PLACEHOLDER: replace this div with <NuxtImg src="/panda-hero.png" alt="Panda at laptop" /> -->
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div
-            class="text-[130px] leading-none select-none"
-            style="filter: drop-shadow(0 0 60px rgba(45,212,191,0.25));"
-            aria-label="Panda mascot at laptop"
-            role="img"
-          >
-            🐼
-          </div>
+          <img
+            src="/largePandaUpscale.png"
+            alt="Panda mascot at laptop"
+            class="w-[520px] h-[520px] object-contain select-none"
+            style="filter: drop-shadow(0 0 12px rgba(255,255,255,0.25));"
+          />
         </div>
 
       </div>
