@@ -1,0 +1,144 @@
+<script setup lang="ts">
+const searchFocused = ref(false)
+
+// Decorative background symbols — scattered asymmetrically
+const codeSymbols = [
+  { text: '{}',  style: { top: '8%',  left: '4%',   fontSize: '1.5rem', opacity: '0.12', animationDelay: '0s' } },
+  { text: '[]',  style: { top: '15%', right: '6%',  fontSize: '1.2rem', opacity: '0.10', animationDelay: '1s' } },
+  { text: '<>',  style: { top: '55%', left: '8%',   fontSize: '1.8rem', opacity: '0.08', animationDelay: '2s' } },
+  { text: '...',  style: { top: '70%', right: '10%', fontSize: '1.1rem', opacity: '0.12', animationDelay: '0.5s' } },
+  { text: '→',   style: { top: '30%', right: '3%',  fontSize: '1.4rem', opacity: '0.15', animationDelay: '1.5s' } },
+  { text: '</>',  style: { top: '82%', left: '15%',  fontSize: '1.6rem', opacity: '0.10', animationDelay: '3s' } },
+  { text: '=>',  style: { top: '45%', right: '20%', fontSize: '1.3rem', opacity: '0.08', animationDelay: '2.5s' } },
+  { text: '()',  style: { top: '22%', left: '18%',  fontSize: '1.1rem', opacity: '0.10', animationDelay: '0.8s' } },
+]
+
+// Each card's positioning uses inline style (top/left/right/bottom as pixel strings)
+// so Tailwind's scanner isn't relied on for dynamic class names.
+const cards = [
+  { name: 'Python',       image: '/python.png',            glowColor: 'yellow', size: 'lg' as const, pos: { top: '80px',    left: '60px'   }, rotation: '-8deg',  delay: '0s' },
+  { name: 'React',        icon: 'simple-icons:react',      glowColor: 'cyan',   size: 'lg' as const, pos: { top: '30px',    left: '210px'  }, rotation: '4deg',   delay: '0.5s' },
+  { name: 'Braces',       icon: 'lucide:braces',           glowColor: 'teal',   size: 'sm' as const, pos: { top: '18px',    left: '410px'  }, rotation: '-4deg',  delay: '1s' },
+  { name: 'JavaScript',   icon: 'simple-icons:javascript', glowColor: 'yellow', size: 'lg' as const, pos: { top: '70px',    right: '70px'  }, rotation: '8deg',   delay: '2s' },
+  { name: 'Docker',       icon: 'simple-icons:docker',     glowColor: 'blue',   size: 'lg' as const, pos: { top: '190px',   right: '100px' }, rotation: '-6deg',  delay: '1.2s' },
+  { name: 'SQL',          icon: 'lucide:database',         glowColor: 'blue',   size: 'md' as const, pos: { top: '230px',   left: '80px'   }, rotation: '4deg',   delay: '0.7s' },
+  { name: 'CSS Grid',     image: '/cssGrid.png',           glowColor: 'purple', size: 'lg' as const, pos: { bottom: '170px', left: '130px' }, rotation: '6deg',   delay: '1.7s' },
+  { name: 'Git',          icon: 'simple-icons:git',        glowColor: 'orange', glassTint: 'rgba(30,64,175,0.30)', size: 'lg' as const, pos: { bottom: '90px', left: '58px'  }, rotation: '-4deg',  delay: '0.3s' },
+  { name: 'Nginx',        icon: 'simple-icons:nginx',      glowColor: 'green',  size: 'sm' as const, pos: { bottom: '70px', left: '290px' }, rotation: '3deg',   delay: '1s' },
+  { name: 'Command',      icon: 'lucide:terminal',         glowColor: 'green',  size: 'sm' as const, pos: { bottom: '160px', right: '120px' }, rotation: '-8deg', delay: '2.2s' },
+  { name: 'Args',         icon: 'lucide:chevron-right',    glowColor: 'teal',   size: 'sm' as const, pos: { top: '310px',   right: '58px'  }, rotation: '5deg',  delay: '1.5s' },
+]
+
+const suggestions = [
+  { label: 'React Hooks',       icon: 'simple-icons:react' },
+  { label: 'Nginx Config',      icon: 'simple-icons:nginx' },
+  { label: 'Python Regex',      icon: 'simple-icons:python' },
+  { label: 'Git Commands',      icon: 'simple-icons:git' },
+  { label: 'JS Array Methods',  icon: 'simple-icons:javascript' },
+]
+</script>
+
+<template>
+  <section
+    class="relative min-h-screen bg-gradient-to-b from-navy-deep via-navy-mid to-navy-deep overflow-hidden pt-16"
+    aria-label="Hero"
+  >
+
+    <!-- Decorative background code symbols -->
+    <div aria-hidden="true" class="pointer-events-none select-none">
+      <span
+        v-for="(sym, i) in codeSymbols"
+        :key="i"
+        class="absolute font-mono text-teal-glow animate-float"
+        :style="sym.style"
+      >{{ sym.text }}</span>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 flex flex-col items-center">
+
+      <!-- Pill badge -->
+      <div class="mt-20 mb-10">
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-navy-light/50 border border-white/10 rounded-full text-sm text-gray-300 backdrop-blur-sm">
+          👋 Fast track your dev knowledge
+        </span>
+      </div>
+
+      <!-- Floating cards arena + central panda -->
+      <div class="relative w-full max-w-4xl" style="min-height: 560px;">
+
+        <!-- Floating tech cards — hidden on mobile, visible md+ -->
+        <div
+          v-for="card in cards"
+          :key="card.name"
+          class="absolute hidden md:block"
+          :style="card.pos"
+        >
+          <FloatingCard
+            :name="card.name"
+            :icon="card.icon"
+            :image="card.image"
+            :glow-color="card.glowColor"
+            :glass-tint="card.glassTint"
+            :size="card.size"
+            :rotation="card.rotation"
+            :delay="card.delay"
+          />
+        </div>
+
+        <!-- Central panda mascot -->
+        <!-- PLACEHOLDER: replace this div with <NuxtImg src="/panda-hero.png" alt="Panda at laptop" /> -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div
+            class="text-[130px] leading-none select-none"
+            style="filter: drop-shadow(0 0 60px rgba(45,212,191,0.25));"
+            aria-label="Panda mascot at laptop"
+            role="img"
+          >
+            🐼
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Search bar -->
+      <div class="w-full max-w-2xl mt-4">
+        <label for="cheatsheet-search" class="sr-only">Search cheatsheets</label>
+        <div
+          class="relative flex items-center rounded-full border transition-all duration-300"
+          :class="searchFocused
+            ? 'border-teal-glow/60 bg-navy-light/70 shadow-[0_0_30px_rgba(45,212,191,0.45)] scale-[1.01]'
+            : 'border-white/10 bg-navy-light/40 shadow-[0_0_20px_rgba(45,212,191,0.15)]'"
+        >
+          <Icon
+            name="lucide:search"
+            size="20"
+            class="absolute left-5 text-gray-400 pointer-events-none"
+            aria-hidden="true"
+          />
+          <input
+            id="cheatsheet-search"
+            type="search"
+            placeholder="Search for language, library, or tool..."
+            class="w-full bg-transparent py-4 pl-14 pr-6 text-white placeholder-gray-500 outline-none text-base rounded-full"
+            @focus="searchFocused = true"
+            @blur="searchFocused = false"
+          />
+        </div>
+      </div>
+
+      <!-- Suggestion pills -->
+      <div class="flex flex-wrap justify-center gap-2 mt-5 pb-24">
+        <button
+          v-for="s in suggestions"
+          :key="s.label"
+          type="button"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-navy-light/40 border border-white/10 rounded-full text-xs text-gray-300 hover:text-white hover:border-white/30 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-glow/50"
+        >
+          <Icon :name="s.icon" size="12" aria-hidden="true" />
+          {{ s.label }}
+        </button>
+      </div>
+
+    </div>
+  </section>
+</template>

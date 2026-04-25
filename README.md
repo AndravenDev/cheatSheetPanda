@@ -1,6 +1,6 @@
 # CheatSheet Panda
 
-A fast, minimal cheat sheet web app built with **Nuxt 4** and **Vue 3**. Quickly find and reference commands, syntax, and snippets across topics.
+A developer cheat-sheet platform built with **Nuxt 4**, **Tailwind CSS v4**, and **@nuxt/icon** (Iconify).
 
 ---
 
@@ -8,11 +8,12 @@ A fast, minimal cheat sheet web app built with **Nuxt 4** and **Vue 3**. Quickly
 
 | Layer | Technology |
 |---|---|
-| Framework | [Nuxt 4](https://nuxt.com) |
-| UI | [Vue 3](https://vuejs.org) (Composition API) |
-| Router | Vue Router 5 |
+| Framework | Nuxt 4 |
+| UI | Vue 3 (Composition API, `<script setup>`) |
+| Styles | Tailwind CSS v4 (Vite plugin, CSS-first config) |
+| Icons | @nuxt/icon + simple-icons + lucide |
+| Font | Inter (Google Fonts via `<head>` link) |
 | Language | TypeScript |
-| Build Tool | Vite (via Nuxt) |
 
 ---
 
@@ -21,32 +22,33 @@ A fast, minimal cheat sheet web app built with **Nuxt 4** and **Vue 3**. Quickly
 ### Prerequisites
 
 - Node.js `>= 18`
-- npm (or pnpm / yarn / bun)
+- npm
 
-### Install Dependencies
+### Install
 
 ```bash
 npm install
 ```
 
-### Start Development Server
+### Dev server
 
 ```bash
 npm run dev
+# → http://localhost:3000
 ```
 
-App runs at `http://localhost:3000` with hot module replacement enabled.
+### Production build
 
----
+```bash
+npm run build
+npm run preview
+```
 
-## Available Scripts
+### Static site
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview the production build locally |
-| `npm run generate` | Generate a static site |
+```bash
+npm run generate
+```
 
 ---
 
@@ -55,47 +57,52 @@ App runs at `http://localhost:3000` with hot module replacement enabled.
 ```
 cheatSheetPanda/
 ├── app/
-│   └── app.vue          # Root component
-├── public/
-│   ├── favicon.ico
-│   └── robots.txt
-├── nuxt.config.ts       # Nuxt configuration
-├── tsconfig.json        # TypeScript configuration
+│   ├── assets/css/main.css      # Tailwind v4 CSS-first config (@theme, @keyframes)
+│   ├── components/
+│   │   ├── AppHeader.vue        # Fixed nav — logo, links, CTA, scroll-aware bg
+│   │   ├── HeroSection.vue      # Full hero — floating cards, search bar, pills
+│   │   └── FloatingCard.vue     # Reusable glassmorphism tech card
+│   ├── pages/
+│   │   └── index.vue            # Landing page entry point
+│   └── app.vue                  # Root (renders <NuxtPage />)
+├── public/                      # Static assets (favicon, robots.txt)
+├── nuxt.config.ts               # Nuxt + Tailwind Vite plugin config
 └── package.json
 ```
 
-> As the project grows, add `pages/`, `components/`, `composables/`, and `server/` directories following Nuxt conventions.
+---
+
+## Placeholder Images
+
+Two images are referenced but not yet provided. Drop them into `public/` when ready:
+
+| File | Used in | Notes |
+|---|---|---|
+| `/panda-logo.png` | `AppHeader.vue` | 32 × 32 px circular logo; currently shows 🐼 emoji |
+| `/panda-hero.png` | `HeroSection.vue` | Large hero illustration; currently shows 🐼 emoji |
+
+To swap in the images, replace the placeholder `<div>` elements marked with the comment `<!-- PLACEHOLDER -->` in each component.
 
 ---
 
-## Configuration
+## Custom Tailwind Theme
 
-**`nuxt.config.ts`** — core Nuxt settings:
+Defined in `app/assets/css/main.css` via Tailwind v4's `@theme` block:
 
-```ts
-export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
-})
-```
-
-**Environment variables** — create a `.env` file at the project root (it is git-ignored). Access values in code via `useRuntimeConfig()`.
-
----
-
-## Deployment
-
-Build for production then deploy the `.output/` directory to any Node.js host, or use `npm run generate` for a fully static deployment.
-
-See the [Nuxt deployment docs](https://nuxt.com/docs/getting-started/deployment) for platform-specific guides (Vercel, Netlify, Railway, etc.).
+| Token | Value |
+|---|---|
+| `navy-deep` | `#0a1628` |
+| `navy-mid` | `#0f1f3d` |
+| `navy-light` | `#1a2f52` |
+| `mint` | `#4ade80` |
+| `teal-glow` | `#2dd4bf` |
+| `animate-float` | 6 s ease-in-out infinite float |
 
 ---
 
-## Contributing
+## Adding New Pages / Sections
 
-1. Fork the repo and create a feature branch.
-2. Make your changes and verify with `npm run dev`.
-3. Open a pull request with a clear description of what changed and why.
+Follow Nuxt's file-based routing — add `app/pages/about.vue`, etc. Components in `app/components/` are auto-imported.
 
 ---
 
