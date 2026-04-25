@@ -17,11 +17,11 @@ const codeSymbols = [
 // so Tailwind's scanner isn't relied on for dynamic class names.
 const cards = [
   { name: 'Python',       image: '/python.png',            glowColor: 'yellow', size: 'lg' as const, pos: { top: '80px',    left: '60px'   }, rotation: '-8deg',  delay: '0s' },
-  { name: 'React',        icon: 'simple-icons:react',      glowColor: 'cyan',   size: 'lg' as const, pos: { top: '30px',    left: '210px'  }, rotation: '4deg',   delay: '0.5s' },
+  { name: 'React',        image: '/react.png',      glowColor: 'cyan',   size: 'lg' as const, pos: { top: '30px',    left: '210px'  }, rotation: '4deg',   delay: '0.5s' },
   { name: 'Braces',       icon: 'lucide:braces',           glowColor: 'teal',   size: 'sm' as const, pos: { top: '18px',    left: '410px'  }, rotation: '-4deg',  delay: '1s' },
   { name: 'JavaScript',   icon: 'simple-icons:javascript', glowColor: 'yellow', size: 'lg' as const, pos: { top: '70px',    right: '70px'  }, rotation: '8deg',   delay: '2s' },
-  { name: 'Docker',       icon: 'simple-icons:docker',     glowColor: 'blue',   size: 'lg' as const, pos: { top: '190px',   right: '100px' }, rotation: '-6deg',  delay: '1.2s' },
-  { name: 'SQL',          icon: 'lucide:database',         glowColor: 'blue',   size: 'md' as const, pos: { top: '230px',   left: '80px'   }, rotation: '4deg',   delay: '0.7s' },
+  { name: 'Docker',       image: '/docker.png',     glowColor: 'blue',   size: 'lg' as const, pos: { top: '190px',   right: '100px' }, rotation: '-6deg',  delay: '1.2s' },
+  { name: 'SQL',          image: '/sql.png',         glowColor: 'blue',   size: 'md' as const, pos: { top: '230px',   left: '80px'   }, rotation: '4deg',   delay: '0.7s' },
   { name: 'CSS Grid',     image: '/cssGrid.png',           glowColor: 'purple', size: 'lg' as const, pos: { bottom: '170px', left: '130px' }, rotation: '6deg',   delay: '1.7s' },
   { name: 'Git',          icon: 'simple-icons:git',        glowColor: 'orange', glassTint: 'rgba(30,64,175,0.30)', size: 'lg' as const, pos: { bottom: '90px', left: '58px'  }, rotation: '-4deg',  delay: '0.3s' },
   { name: 'Nginx',        icon: 'simple-icons:nginx',      glowColor: 'green',  size: 'sm' as const, pos: { bottom: '70px', left: '290px' }, rotation: '3deg',   delay: '1s' },
