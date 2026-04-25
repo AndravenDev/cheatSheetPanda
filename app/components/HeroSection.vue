@@ -1,41 +1,205 @@
 <script setup lang="ts">
-const searchFocused = ref(false)
+const searchFocused = ref(false);
 
 // Decorative background symbols — scattered asymmetrically
 const codeSymbols = [
-  { text: '{}',  style: { top: '8%',  left: '4%',   fontSize: '1.5rem', opacity: '0.12', animationDelay: '0s' } },
-  { text: '[]',  style: { top: '15%', right: '6%',  fontSize: '1.2rem', opacity: '0.10', animationDelay: '1s' } },
-  { text: '<>',  style: { top: '55%', left: '8%',   fontSize: '1.8rem', opacity: '0.08', animationDelay: '2s' } },
-  { text: '...',  style: { top: '70%', right: '10%', fontSize: '1.1rem', opacity: '0.12', animationDelay: '0.5s' } },
-  { text: '→',   style: { top: '30%', right: '3%',  fontSize: '1.4rem', opacity: '0.15', animationDelay: '1.5s' } },
-  { text: '</>',  style: { top: '82%', left: '15%',  fontSize: '1.6rem', opacity: '0.10', animationDelay: '3s' } },
-  { text: '=>',  style: { top: '45%', right: '20%', fontSize: '1.3rem', opacity: '0.08', animationDelay: '2.5s' } },
-  { text: '()',  style: { top: '22%', left: '18%',  fontSize: '1.1rem', opacity: '0.10', animationDelay: '0.8s' } },
-]
+  {
+    text: "{}",
+    style: {
+      top: "8%",
+      left: "4%",
+      fontSize: "1.5rem",
+      opacity: "0.12",
+      animationDelay: "0s",
+    },
+  },
+  {
+    text: "[]",
+    style: {
+      top: "15%",
+      right: "6%",
+      fontSize: "1.2rem",
+      opacity: "0.10",
+      animationDelay: "1s",
+    },
+  },
+  {
+    text: "<>",
+    style: {
+      top: "55%",
+      left: "8%",
+      fontSize: "1.8rem",
+      opacity: "0.08",
+      animationDelay: "2s",
+    },
+  },
+  {
+    text: "...",
+    style: {
+      top: "70%",
+      right: "10%",
+      fontSize: "1.1rem",
+      opacity: "0.12",
+      animationDelay: "0.5s",
+    },
+  },
+  {
+    text: "→",
+    style: {
+      top: "30%",
+      right: "3%",
+      fontSize: "1.4rem",
+      opacity: "0.15",
+      animationDelay: "1.5s",
+    },
+  },
+  {
+    text: "</>",
+    style: {
+      top: "82%",
+      left: "15%",
+      fontSize: "1.6rem",
+      opacity: "0.10",
+      animationDelay: "3s",
+    },
+  },
+  {
+    text: "=>",
+    style: {
+      top: "45%",
+      right: "20%",
+      fontSize: "1.3rem",
+      opacity: "0.08",
+      animationDelay: "2.5s",
+    },
+  },
+  {
+    text: "()",
+    style: {
+      top: "22%",
+      left: "18%",
+      fontSize: "1.1rem",
+      opacity: "0.10",
+      animationDelay: "0.8s",
+    },
+  },
+];
 
 // Arch arc: parabola peaking at center (Docker, directly above panda),
 // descending symmetrically to both sides. Step = 100px, depth = 200px.
 const cards = [
-  { name: 'Python',     image: '/pythonBetter.png',        glowColor: 'yellow', size: 'lg' as const, pos: { top: '220px', left: '20px'  }, rotation: '-10deg', delay: '0s'   },
-  { name: 'React',      image: '/react.png',               glowColor: 'cyan',   size: 'lg' as const, pos: { top: '148px', left: '120px' }, rotation: '5deg',   delay: '0.5s' },
-  { name: 'Braces',     icon: 'lucide:braces',            glowColor: 'teal',   size: 'sm' as const, pos: { top: '90px',  left: '220px' }, rotation: '-4deg',  delay: '1s'   },
-  { name: 'SQL',        image: '/sql.png',                 glowColor: 'blue',   size: 'md' as const, pos: { top: '50px',  left: '320px' }, rotation: '3deg',   delay: '0.7s' },
-  { name: 'JavaScript', icon: 'simple-icons:javascript',  glowColor: 'yellow', size: 'lg' as const, pos: { top: '28px',  left: '420px' }, rotation: '8deg',   delay: '2s'   },
-  { name: 'Docker',     image: '/docker.png',             glowColor: 'blue',   size: 'lg' as const, pos: { top: '20px',  left: '520px' }, rotation: '-3deg',  delay: '1.2s' },
-  { name: 'CSS Grid',   image: '/python.png',             glowColor: 'purple', size: 'lg' as const, pos: { top: '28px',  left: '620px' }, rotation: '6deg',   delay: '1.7s' },
-  { name: 'Git',        image: '/gitUpscaled.png',        glowColor: 'orange', glassTint: 'rgba(30,64,175,0.30)', size: 'lg' as const, pos: { top: '50px',  left: '720px' }, rotation: '-4deg',  delay: '0.3s' },
-  { name: 'Nginx',      icon: 'simple-icons:nginx',       glowColor: 'green',  size: 'sm' as const, pos: { top: '90px',  left: '820px' }, rotation: '3deg',   delay: '1s'   },
-  { name: 'Command',    image: '/command.png',            glowColor: 'green',  size: 'sm' as const, pos: { top: '148px', left: '920px' }, rotation: '-8deg',  delay: '2.2s' },
-  { name: 'Args',       icon: 'lucide:chevron-right',     glowColor: 'teal',   size: 'sm' as const, pos: { top: '220px', left: '1020px'}, rotation: '5deg',   delay: '1.5s' },
-]
+  {
+    name: "Frag",
+    image: "/frag.png",
+    glowColor: "teal",
+    size: "sm" as const,
+    pos: { top: "220px", left: "20px" },
+    rotation: "-4deg",
+    delay: "1s",
+  },
+  {
+    name: "Python",
+    image: "/pythonBetter.png",
+    glowColor: "yellow",
+    size: "lg" as const,
+    pos: { top: "148px", left: "120px" },
+    rotation: "-10deg",
+    delay: "0s",
+  },
+  {
+    name: "Node",
+    icon: "simple-icons:nginx",
+    glowColor: "green",
+    innerGlow: true,
+    size: "sm" as const,
+    pos: { top: "90px", left: "220px" },
+    rotation: "3deg",
+    delay: "1s",
+  },
+  {
+    name: "React",
+    image: "/react.png",
+    glowColor: "cyan",
+    size: "lg" as const,
+    pos: { top: "50px", left: "320px" },
+    rotation: "5deg",
+    delay: "0.5s",
+  },
+  {
+    name: "CSS Grid",
+    image: "/python.png",
+    glowColor: "purple",
+    size: "lg" as const,
+    pos: { top: "28px", left: "420px" },
+    rotation: "6deg",
+    delay: "1.7s",
+  },
+  {
+    name: "SQL",
+    image: "/sql.png",
+    glowColor: "blue",
+    size: "md" as const,
+    pos: { top: "20px", left: "520px" },
+    rotation: "3deg",
+    delay: "0.7s",
+  },
+  {
+    name: "Docker",
+    image: "/docker.png",
+    glowColor: "blue",
+    size: "lg" as const,
+    pos: { top: "28px", left: "620px" },
+    rotation: "-3deg",
+    delay: "1.2s",
+  },
+  {
+    name: "Command",
+    image: "/command.png",
+    glowColor: "green",
+    size: "sm" as const,
+    pos: { top: "50px", left: "720px" },
+    rotation: "-8deg",
+    delay: "2.2s",
+  },
+  {
+    name: "Git",
+    image: "/gitUpscaled.png",
+    glowColor: "orange",
+    glassTint: "rgba(30,64,175,0.30)",
+    size: "lg" as const,
+    pos: { top: "90px", left: "820px" },
+    rotation: "-4deg",
+    delay: "0.3s",
+  },
+  {
+    name: "Args",
+    icon: "lucide:chevron-right",
+    glowColor: "teal",
+    innerGlow: true,
+    size: "lg" as const,
+    pos: { top: "148px", left: "920px" },
+    rotation: "5deg",
+    delay: "1.5s",
+  },
+  {
+    name: "JavaScript",
+    icon: "simple-icons:javascript",
+    glowColor: "yellow",
+    innerGlow: true,
+    size: "lg" as const,
+    pos: { top: "220px", left: "1020px" },
+    rotation: "8deg",
+    delay: "2s",
+  },
+];
 
 const suggestions = [
-  { label: 'React Hooks',       icon: 'simple-icons:react' },
-  { label: 'Nginx Config',      icon: 'simple-icons:nginx' },
-  { label: 'Python Regex',      icon: 'simple-icons:python' },
-  { label: 'Git Commands',      icon: 'simple-icons:git' },
-  { label: 'JS Array Methods',  icon: 'simple-icons:javascript' },
-]
+  { label: "React Hooks", icon: "simple-icons:react" },
+  { label: "Nginx Config", icon: "simple-icons:nginx" },
+  { label: "Python Regex", icon: "simple-icons:python" },
+  { label: "Git Commands", icon: "simple-icons:git" },
+  { label: "JS Array Methods", icon: "simple-icons:javascript" },
+];
 </script>
 
 <template>
@@ -43,7 +207,6 @@ const suggestions = [
     class="relative min-h-screen bg-gradient-to-b from-navy-deep via-navy-mid to-navy-deep overflow-hidden pt-16"
     aria-label="Hero"
   >
-
     <!-- Decorative background code symbols -->
     <div aria-hidden="true" class="pointer-events-none select-none">
       <span
@@ -51,21 +214,22 @@ const suggestions = [
         :key="i"
         class="absolute font-mono text-teal-glow animate-float"
         :style="sym.style"
-      >{{ sym.text }}</span>
+        >{{ sym.text }}</span
+      >
     </div>
 
     <div class="relative max-w-7xl mx-auto px-6 flex flex-col items-center">
-
       <!-- Pill badge -->
       <div class="mt-20 mb-10">
-        <span class="inline-flex items-center gap-2 px-4 py-2 bg-navy-light/50 border border-white/10 rounded-full text-sm text-gray-300 backdrop-blur-sm">
+        <span
+          class="inline-flex items-center gap-2 px-4 py-2 bg-navy-light/50 border border-white/10 rounded-full text-sm text-gray-300 backdrop-blur-sm"
+        >
           👋 Fast track your dev knowledge
         </span>
       </div>
 
       <!-- Floating cards arena + central panda -->
-      <div class="relative w-full max-w-6xl" style="min-height: 560px;">
-
+      <div class="relative w-full max-w-6xl" style="min-height: 560px">
         <!-- Floating tech cards — hidden on mobile, visible md+ -->
         <div
           v-for="card in cards"
@@ -79,6 +243,7 @@ const suggestions = [
             :image="card.image"
             :glow-color="card.glowColor"
             :glass-tint="card.glassTint"
+            :inner-glow="card.innerGlow"
             :size="card.size"
             :rotation="card.rotation"
             :delay="card.delay"
@@ -86,25 +251,34 @@ const suggestions = [
         </div>
 
         <!-- Central panda mascot -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div
+          class="absolute inset-0 flex items-center justify-center pointer-events-none"
+        >
           <img
             src="/largePandaUpscale.png"
             alt="Panda mascot at laptop"
             class="w-[520px] h-[520px] object-contain select-none"
-            style="filter: drop-shadow(0 0 60px rgba(120,180,255,0.35)) drop-shadow(0 0 180px rgba(100,160,240,0.25)) drop-shadow(0 0 400px rgba(80,140,220,0.15));"
+            style="
+              filter: drop-shadow(0 0 60px rgba(120, 180, 255, 0.35))
+                drop-shadow(0 0 180px rgba(100, 160, 240, 0.25))
+                drop-shadow(0 0 400px rgba(80, 140, 220, 0.15));
+            "
           />
         </div>
-
       </div>
 
       <!-- Search bar -->
       <div class="w-full max-w-2xl mt-4">
-        <label for="cheatsheet-search" class="sr-only">Search cheatsheets</label>
+        <label for="cheatsheet-search" class="sr-only"
+          >Search cheatsheets</label
+        >
         <div
           class="relative flex items-center rounded-full border transition-all duration-300"
-          :class="searchFocused
-            ? 'border-teal-glow/60 bg-navy-light/70 shadow-[0_0_30px_rgba(45,212,191,0.45)] scale-[1.01]'
-            : 'border-white/10 bg-navy-light/40 shadow-[0_0_20px_rgba(45,212,191,0.15)]'"
+          :class="
+            searchFocused
+              ? 'border-teal-glow/60 bg-navy-light/70 shadow-[0_0_30px_rgba(45,212,191,0.45)] scale-[1.01]'
+              : 'border-white/10 bg-navy-light/40 shadow-[0_0_20px_rgba(45,212,191,0.15)]'
+          "
         >
           <Icon
             name="lucide:search"
@@ -135,7 +309,6 @@ const suggestions = [
           {{ s.label }}
         </button>
       </div>
-
     </div>
   </section>
 </template>

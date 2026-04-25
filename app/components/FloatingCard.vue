@@ -5,6 +5,7 @@ const props = defineProps<{
   image?: string
   glowColor?: string
   glassTint?: string
+  innerGlow?: boolean
   size?: 'sm' | 'md' | 'lg'  // kept for API compatibility, no longer affects dimensions
   rotation?: string
   delay?: string
@@ -32,6 +33,8 @@ const iconColorMap: Record<string, string> = {
 
 const glow = computed(() => glowMap[props.glowColor ?? ''] ?? 'rgba(45,212,191,0.3)')
 const iconColor = computed(() => iconColorMap[props.glowColor ?? ''] ?? '#2dd4bf')
+const iconSize = computed(() => props.size === 'lg' ? 52 : props.size === 'sm' ? 28 : 36)
+const labelClass = computed(() => props.size === 'lg' ? 'text-white/70 text-[13px] font-medium whitespace-nowrap leading-none' : 'text-white/70 text-[10px] font-medium whitespace-nowrap leading-none')
 </script>
 
 <template>
@@ -58,12 +61,14 @@ const iconColor = computed(() => iconColorMap[props.glowColor ?? ''] ?? '#2dd4bf
         width: '128px',
         height: '128px',
         backgroundColor: glassTint ?? 'rgba(26,47,82,0.30)',
-        boxShadow: `0 0 28px ${glow}`,
+        boxShadow: innerGlow ? `0 0 28px ${glow}, inset 0 0 40px ${glow}, inset 0 0 80px ${glow}` : `0 0 28px ${glow}`,
+        borderColor: innerGlow ? iconColor : undefined,
+        borderWidth: innerGlow ? '3px' : undefined,
         animationDelay: delay ?? '0s',
       }"
     >
-      <Icon :name="icon" size="36" :style="{ color: iconColor }" aria-hidden="true" />
-      <span class="text-white/70 text-[10px] font-medium whitespace-nowrap leading-none">{{ name }}</span>
+      <Icon :name="icon" :size="iconSize" :style="{ color: iconColor }" aria-hidden="true" />
+      <span :class="labelClass">{{ name }}</span>
     </div>
   </div>
 </template>
