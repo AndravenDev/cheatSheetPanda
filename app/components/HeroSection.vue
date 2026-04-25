@@ -127,7 +127,7 @@ const cards = [
   },
   {
     name: "CSS Grid",
-    image: "/python.png",
+    image: "/cssGridUpscaled.png",
     glowColor: "purple",
     size: "lg" as const,
     pos: { top: "28px", left: "420px" },

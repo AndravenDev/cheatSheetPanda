@@ -6,7 +6,7 @@ const props = defineProps<{
   glowColor?: string
   glassTint?: string
   innerGlow?: boolean
-  size?: 'sm' | 'md' | 'lg'  // kept for API compatibility, no longer affects dimensions
+  size?: 'sm' | 'md' | 'lg'
   rotation?: string
   delay?: string
 }>()
@@ -31,10 +31,13 @@ const iconColorMap: Record<string, string> = {
   teal: '#2dd4bf',
 }
 
+const dimMap: Record<string, number> = { sm: 80, md: 104, lg: 128 }
+const dim = computed(() => `${dimMap[props.size ?? 'md'] ?? 104}px`)
+
 const glow = computed(() => glowMap[props.glowColor ?? ''] ?? 'rgba(45,212,191,0.3)')
 const iconColor = computed(() => iconColorMap[props.glowColor ?? ''] ?? '#2dd4bf')
-const iconSize = computed(() => props.size === 'lg' ? 52 : props.size === 'sm' ? 28 : 36)
-const labelClass = computed(() => props.size === 'lg' ? 'text-white/70 text-[13px] font-medium whitespace-nowrap leading-none' : 'text-white/70 text-[10px] font-medium whitespace-nowrap leading-none')
+const iconSize = computed(() => props.size === 'lg' ? 44 : props.size === 'sm' ? 24 : 32)
+const labelClass = computed(() => props.size === 'lg' ? 'text-white/70 text-[12px] font-medium whitespace-nowrap leading-none' : props.size === 'sm' ? 'text-white/70 text-[9px] font-medium whitespace-nowrap leading-none' : 'text-white/70 text-[10px] font-medium whitespace-nowrap leading-none')
 </script>
 
 <template>
@@ -46,8 +49,8 @@ const labelClass = computed(() => props.size === 'lg' ? 'text-white/70 text-[13p
       :alt="name"
       class="animate-float hover:scale-110 transition-transform duration-300 cursor-default select-none object-contain drop-shadow-[0_0_28px_var(--card-glow)]"
       :style="{
-        width: '128px',
-        height: '128px',
+        width: dim,
+        height: dim,
         animationDelay: delay ?? '0s',
         '--card-glow': glow,
       }"
@@ -58,8 +61,8 @@ const labelClass = computed(() => props.size === 'lg' ? 'text-white/70 text-[13p
       v-else-if="icon"
       class="flex flex-col items-center justify-center gap-1.5 backdrop-blur-md border border-white/10 rounded-2xl animate-float hover:scale-110 transition-transform duration-300 cursor-default select-none"
       :style="{
-        width: '128px',
-        height: '128px',
+        width: dim,
+        height: dim,
         backgroundColor: glassTint ?? 'rgba(26,47,82,0.30)',
         boxShadow: innerGlow ? `0 0 28px ${glow}, inset 0 0 40px ${glow}, inset 0 0 80px ${glow}` : `0 0 28px ${glow}`,
         borderColor: innerGlow ? iconColor : undefined,
