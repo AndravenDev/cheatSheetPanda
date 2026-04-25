@@ -2,10 +2,10 @@
 const props = defineProps<{
   name: string
   icon?: string
-  image?: string   // path to a PNG in /public, e.g. "/python.png"
+  image?: string
   glowColor?: string
-  glassTint?: string  // CSS color to tint the card background, e.g. 'rgba(37,99,235,0.25)'
-  size?: 'sm' | 'md' | 'lg'
+  glassTint?: string
+  size?: 'sm' | 'md' | 'lg'  // kept for API compatibility, no longer affects dimensions
   rotation?: string
   delay?: string
 }>()
@@ -32,40 +32,37 @@ const iconColorMap: Record<string, string> = {
 
 const glow = computed(() => glowMap[props.glowColor ?? ''] ?? 'rgba(45,212,191,0.3)')
 const iconColor = computed(() => iconColorMap[props.glowColor ?? ''] ?? '#2dd4bf')
-
-const padding = computed(() => ({ sm: 'p-3', md: 'p-4', lg: 'p-5' }[props.size ?? 'md']))
-const iconSize = computed(() => ({ sm: '20', md: '28', lg: '36' }[props.size ?? 'md']))
-const imgSize = computed(() => ({ sm: '64px', md: '96px', lg: '128px' }[props.size ?? 'md']))
 </script>
 
 <template>
   <div :style="{ transform: rotation ? `rotate(${rotation})` : undefined }">
-    <!-- PNG mode: image fills the whole element, no card chrome -->
+    <!-- PNG mode: fixed 96×96, no card chrome -->
     <img
       v-if="image"
       :src="image"
       :alt="name"
       class="animate-float hover:scale-110 transition-transform duration-300 cursor-default select-none object-contain drop-shadow-[0_0_28px_var(--card-glow)]"
       :style="{
-        width: imgSize,
-        height: imgSize,
+        width: '128px',
+        height: '128px',
         animationDelay: delay ?? '0s',
         '--card-glow': glow,
       }"
     />
 
-    <!-- Icon mode: glassmorphism card -->
+    <!-- Icon mode: fixed 96×96 glassmorphism card -->
     <div
       v-else-if="icon"
-      class="flex flex-col items-center gap-1.5 backdrop-blur-md border border-white/10 rounded-2xl animate-float hover:scale-110 transition-transform duration-300 cursor-default select-none"
-      :class="padding"
+      class="flex flex-col items-center justify-center gap-1.5 backdrop-blur-md border border-white/10 rounded-2xl animate-float hover:scale-110 transition-transform duration-300 cursor-default select-none"
       :style="{
+        width: '128px',
+        height: '128px',
         backgroundColor: glassTint ?? 'rgba(26,47,82,0.30)',
         boxShadow: `0 0 28px ${glow}`,
         animationDelay: delay ?? '0s',
       }"
     >
-      <Icon :name="icon" :size="iconSize" :style="{ color: iconColor }" aria-hidden="true" />
+      <Icon :name="icon" size="36" :style="{ color: iconColor }" aria-hidden="true" />
       <span class="text-white/70 text-[10px] font-medium whitespace-nowrap leading-none">{{ name }}</span>
     </div>
   </div>

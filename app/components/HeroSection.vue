@@ -13,20 +13,20 @@ const codeSymbols = [
   { text: '()',  style: { top: '22%', left: '18%',  fontSize: '1.1rem', opacity: '0.10', animationDelay: '0.8s' } },
 ]
 
-// Each card's positioning uses inline style (top/left/right/bottom as pixel strings)
-// so Tailwind's scanner isn't relied on for dynamic class names.
+// Arch arc: parabola peaking at center (Docker, directly above panda),
+// descending symmetrically to both sides. Step = 100px, depth = 200px.
 const cards = [
-  { name: 'Python',       image: '/pythonBetter.png',            glowColor: 'yellow', size: 'lg' as const, pos: { top: '80px',    left: '60px'   }, rotation: '-8deg',  delay: '0s' },
-  { name: 'React',        image: '/react.png',      glowColor: 'cyan',   size: 'lg' as const, pos: { top: '30px',    left: '210px'  }, rotation: '4deg',   delay: '0.5s' },
-  { name: 'Braces',       icon: 'lucide:braces',           glowColor: 'teal',   size: 'sm' as const, pos: { top: '18px',    left: '410px'  }, rotation: '-4deg',  delay: '1s' },
-  { name: 'JavaScript',   icon: 'simple-icons:javascript', glowColor: 'yellow', size: 'lg' as const, pos: { top: '70px',    right: '70px'  }, rotation: '8deg',   delay: '2s' },
-  { name: 'Docker',       image: '/docker.png',     glowColor: 'blue',   size: 'lg' as const, pos: { top: '190px',   right: '100px' }, rotation: '-6deg',  delay: '1.2s' },
-  { name: 'SQL',          image: '/sql.png',         glowColor: 'blue',   size: 'md' as const, pos: { top: '230px',   left: '80px'   }, rotation: '4deg',   delay: '0.7s' },
-  { name: 'CSS Grid',     image: '/python.png',           glowColor: 'purple', size: 'lg' as const, pos: { bottom: '170px', left: '130px' }, rotation: '6deg',   delay: '1.7s' },
-  { name: 'Git',          icon: 'simple-icons:git',        glowColor: 'orange', glassTint: 'rgba(30,64,175,0.30)', size: 'lg' as const, pos: { bottom: '90px', left: '58px'  }, rotation: '-4deg',  delay: '0.3s' },
-  { name: 'Nginx',        icon: 'simple-icons:nginx',      glowColor: 'green',  size: 'sm' as const, pos: { bottom: '70px', left: '290px' }, rotation: '3deg',   delay: '1s' },
-  { name: 'Command',      icon: 'lucide:terminal',         glowColor: 'green',  size: 'sm' as const, pos: { bottom: '160px', right: '120px' }, rotation: '-8deg', delay: '2.2s' },
-  { name: 'Args',         icon: 'lucide:chevron-right',    glowColor: 'teal',   size: 'sm' as const, pos: { top: '310px',   right: '58px'  }, rotation: '5deg',  delay: '1.5s' },
+  { name: 'Python',     image: '/pythonBetter.png',        glowColor: 'yellow', size: 'lg' as const, pos: { top: '220px', left: '20px'  }, rotation: '-10deg', delay: '0s'   },
+  { name: 'React',      image: '/react.png',               glowColor: 'cyan',   size: 'lg' as const, pos: { top: '148px', left: '120px' }, rotation: '5deg',   delay: '0.5s' },
+  { name: 'Braces',     icon: 'lucide:braces',            glowColor: 'teal',   size: 'sm' as const, pos: { top: '90px',  left: '220px' }, rotation: '-4deg',  delay: '1s'   },
+  { name: 'SQL',        image: '/sql.png',                 glowColor: 'blue',   size: 'md' as const, pos: { top: '50px',  left: '320px' }, rotation: '3deg',   delay: '0.7s' },
+  { name: 'JavaScript', icon: 'simple-icons:javascript',  glowColor: 'yellow', size: 'lg' as const, pos: { top: '28px',  left: '420px' }, rotation: '8deg',   delay: '2s'   },
+  { name: 'Docker',     image: '/docker.png',             glowColor: 'blue',   size: 'lg' as const, pos: { top: '20px',  left: '520px' }, rotation: '-3deg',  delay: '1.2s' },
+  { name: 'CSS Grid',   image: '/python.png',             glowColor: 'purple', size: 'lg' as const, pos: { top: '28px',  left: '620px' }, rotation: '6deg',   delay: '1.7s' },
+  { name: 'Git',        image: '/gitUpscaled.png',        glowColor: 'orange', glassTint: 'rgba(30,64,175,0.30)', size: 'lg' as const, pos: { top: '50px',  left: '720px' }, rotation: '-4deg',  delay: '0.3s' },
+  { name: 'Nginx',      icon: 'simple-icons:nginx',       glowColor: 'green',  size: 'sm' as const, pos: { top: '90px',  left: '820px' }, rotation: '3deg',   delay: '1s'   },
+  { name: 'Command',    image: '/command.png',            glowColor: 'green',  size: 'sm' as const, pos: { top: '148px', left: '920px' }, rotation: '-8deg',  delay: '2.2s' },
+  { name: 'Args',       icon: 'lucide:chevron-right',     glowColor: 'teal',   size: 'sm' as const, pos: { top: '220px', left: '1020px'}, rotation: '5deg',   delay: '1.5s' },
 ]
 
 const suggestions = [
@@ -64,7 +64,7 @@ const suggestions = [
       </div>
 
       <!-- Floating cards arena + central panda -->
-      <div class="relative w-full max-w-4xl" style="min-height: 560px;">
+      <div class="relative w-full max-w-6xl" style="min-height: 560px;">
 
         <!-- Floating tech cards — hidden on mobile, visible md+ -->
         <div
@@ -91,7 +91,7 @@ const suggestions = [
             src="/largePandaUpscale.png"
             alt="Panda mascot at laptop"
             class="w-[520px] h-[520px] object-contain select-none"
-            style="filter: drop-shadow(0 0 12px rgba(255,255,255,0.25));"
+            style="filter: drop-shadow(0 0 60px rgba(120,180,255,0.35)) drop-shadow(0 0 180px rgba(100,160,240,0.25)) drop-shadow(0 0 400px rgba(80,140,220,0.15));"
           />
         </div>
 
