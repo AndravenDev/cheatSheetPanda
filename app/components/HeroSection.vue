@@ -92,9 +92,11 @@ const cards = [
     name: "Frag",
     image: "/frag.png",
     glowColor: "teal",
-    size: "sm" as const,
-    pos: { top: "220px", left: "20px" },
-    rotation: "-4deg",
+    size: "md" as const,
+    zIndex: 1,
+    side: "left",
+    pos: { top: "340px", left: "20px" },
+    rotation: "-15deg",
     delay: "1s",
   },
   {
@@ -102,8 +104,10 @@ const cards = [
     image: "/pythonBetter.png",
     glowColor: "yellow",
     size: "lg" as const,
-    pos: { top: "148px", left: "120px" },
-    rotation: "-10deg",
+    zIndex: 2,
+    side: "left",
+    pos: { top: "200px", left: "90px" },
+    rotation: "-9deg",
     delay: "0s",
   },
   {
@@ -112,8 +116,10 @@ const cards = [
     glowColor: "green",
     innerGlow: true,
     size: "sm" as const,
-    pos: { top: "90px", left: "220px" },
-    rotation: "3deg",
+    zIndex: 1,
+    side: "left",
+    pos: { top: "270px", left: "220px" },
+    rotation: "-7deg",
     delay: "1s",
   },
   {
@@ -121,8 +127,10 @@ const cards = [
     image: "/react.png",
     glowColor: "cyan",
     size: "lg" as const,
-    pos: { top: "50px", left: "320px" },
-    rotation: "5deg",
+    zIndex: 1,
+    side: "left",
+    pos: { top: "160px", left: "280px" },
+    rotation: "-3deg",
     delay: "0.5s",
   },
   {
@@ -130,8 +138,10 @@ const cards = [
     image: "/cssGridUpscaled.png",
     glowColor: "purple",
     size: "lg" as const,
-    pos: { top: "28px", left: "420px" },
-    rotation: "6deg",
+    zIndex: 1,
+    side: "left",
+    pos: { top: "150px", left: "400px" },
+    rotation: "0deg",
     delay: "1.7s",
   },
   {
@@ -139,7 +149,9 @@ const cards = [
     image: "/sql.png",
     glowColor: "blue",
     size: "md" as const,
-    pos: { top: "20px", left: "520px" },
+    zIndex: 1,
+    side: "right",
+    pos: { top: "60px", left: "160px" },
     rotation: "3deg",
     delay: "0.7s",
   },
@@ -147,8 +159,10 @@ const cards = [
     name: "Docker",
     image: "/docker.png",
     glowColor: "blue",
-    size: "lg" as const,
-    pos: { top: "28px", left: "620px" },
+    size: "md" as const,
+    zIndex: 1,
+    side: "right",
+    pos: { top: "28px", left: "280px" },
     rotation: "-3deg",
     delay: "1.2s",
   },
@@ -156,8 +170,10 @@ const cards = [
     name: "Command",
     image: "/command.png",
     glowColor: "green",
-    size: "sm" as const,
-    pos: { top: "50px", left: "720px" },
+    size: "md" as const,
+    zIndex: 1,
+    side: "right",
+    pos: { top: "50px", left: "380px" },
     rotation: "-8deg",
     delay: "2.2s",
   },
@@ -166,8 +182,10 @@ const cards = [
     image: "/gitUpscaled.png",
     glowColor: "orange",
     glassTint: "rgba(30,64,175,0.30)",
-    size: "lg" as const,
-    pos: { top: "90px", left: "820px" },
+    size: "md" as const,
+    zIndex: 1,
+    side: "right",
+    pos: { top: "90px", left: "480px" },
     rotation: "-4deg",
     delay: "0.3s",
   },
@@ -176,8 +194,10 @@ const cards = [
     icon: "lucide:chevron-right",
     glowColor: "teal",
     innerGlow: true,
-    size: "lg" as const,
-    pos: { top: "148px", left: "920px" },
+    size: "md" as const,
+    zIndex: 1,
+    side: "right",
+    pos: { top: "148px", left: "580px" },
     rotation: "5deg",
     delay: "1.5s",
   },
@@ -186,12 +206,17 @@ const cards = [
     icon: "simple-icons:javascript",
     glowColor: "yellow",
     innerGlow: true,
-    size: "lg" as const,
-    pos: { top: "220px", left: "1020px" },
+    size: "md" as const,
+    zIndex: 1,
+    side: "right",
+    pos: { top: "220px", left: "680px" },
     rotation: "8deg",
     delay: "2s",
   },
 ];
+
+const leftCards = computed(() => cards.filter(c => c.side === 'left'));
+const rightCards = computed(() => cards.filter(c => c.side === 'right'));
 
 const suggestions = [
   { label: "React Hooks", icon: "simple-icons:react" },
@@ -229,30 +254,54 @@ const suggestions = [
       </div>
 
       <!-- Floating cards arena + central panda -->
-      <div class="relative w-full max-w-6xl" style="min-height: 560px">
-        <!-- Floating tech cards — hidden on mobile, visible md+ -->
-        <div
-          v-for="card in cards"
-          :key="card.name"
-          class="absolute hidden md:block"
-          :style="card.pos"
-        >
-          <FloatingCard
-            :name="card.name"
-            :icon="card.icon"
-            :image="card.image"
-            :glow-color="card.glowColor"
-            :glass-tint="card.glassTint"
-            :inner-glow="card.innerGlow"
-            :size="card.size"
-            :rotation="card.rotation"
-            :delay="card.delay"
-          />
+      <div class="relative w-full max-w-6xl flex" style="min-height: 560px">
+        <!-- Left cards container — hidden on mobile -->
+        <div class="flex relative" style="width: 540px">
+          <div
+            v-for="card in leftCards"
+            :key="card.name"
+            class=""
+            :style="{ ...card.pos, zIndex: card.zIndex }"
+          >
+            <FloatingCard
+              :name="card.name"
+              :icon="card.icon"
+              :image="card.image"
+              :glow-color="card.glowColor"
+              :glass-tint="card.glassTint"
+              :inner-glow="card.innerGlow"
+              :size="card.size"
+              :rotation="card.rotation"
+              :delay="card.delay"
+            />
+          </div>
+        </div>
+
+        <!-- Right cards container — hidden on mobile -->
+        <div class="flex ml-18 relative" style="left: 40px">
+          <div
+            v-for="card in rightCards"
+            :key="card.name"
+            class=""
+            :style="{ ...card.pos, zIndex: card.zIndex }"
+          >
+            <FloatingCard
+              :name="card.name"
+              :icon="card.icon"
+              :image="card.image"
+              :glow-color="card.glowColor"
+              :glass-tint="card.glassTint"
+              :inner-glow="card.innerGlow"
+              :size="card.size"
+              :rotation="card.rotation"
+              :delay="card.delay"
+            />
+          </div>
         </div>
 
         <!-- Central panda mascot -->
         <div
-          class="absolute inset-0 flex items-center justify-center pointer-events-none"
+          class="absolute inset-0 flex items-center justify-center pointer-events-none" style="z-index: 10"
         >
           <img
             src="/largePandaUpscale.png"
