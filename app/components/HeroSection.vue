@@ -167,7 +167,7 @@ const cards = [
     image: "/sqlUpscaled.png",
     glowColor: "blue",
     size: "lg" as const,
-    zIndex: 1,
+    zIndex: 5,
     side: "right",
     pos: { top: "60px", left: "120px" },
     rotation: "6deg",
@@ -178,7 +178,7 @@ const cards = [
     image: "/dockerGlow.png",
     glowColor: "blue",
     size: "lg" as const,
-    zIndex: 3,
+    zIndex: 4,
     side: "right",
     pos: { top: "60px", left: "240px" },
     rotation: "7deg",
@@ -250,7 +250,7 @@ const suggestions = [
 
 <template>
   <section
-    class="relative min-h-screen bg-gradient-to-b from-navy-deep via-navy-mid to-navy-deep overflow-hidden pt-16"
+    class="relative min-h-screen overflow-hidden pt-16 bg-[url('/background.png')] bg-cover bg-center bg-no-repeat"
     aria-label="Hero"
   >
     <!-- Decorative background code symbols -->
@@ -264,9 +264,9 @@ const suggestions = [
       >
     </div>
 
-    <div class="relative  mx-auto px-2 flex flex-col items-center">
+    <div class="relative max-w-7xl mx-auto px-6 w-full flex flex-col items-center">
       <!-- Pill badge -->
-      <div class="mt-12 mb-2 lg:mt-20 lg:mb-4">
+      <div class="mt-2 mb-2 self-start">
         <span
           class="inline-flex items-center gap-2 px-4 py-2 bg-navy-light/50 border border-white/10 rounded-full text-sm text-gray-300 backdrop-blur-sm"
         >

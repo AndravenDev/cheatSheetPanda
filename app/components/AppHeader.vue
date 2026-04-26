@@ -18,7 +18,7 @@ const navLinks = ['Browse', 'Submit', 'Pricing', 'Blog']
       ? 'bg-navy-deep/95 backdrop-blur-lg'
       : 'bg-navy-deep/60 backdrop-blur-md'"
   >
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center gap-8">
 
       <!-- Logo group -->
       <div class="flex items-center gap-2 shrink-0">
@@ -34,25 +34,27 @@ const navLinks = ['Browse', 'Submit', 'Pricing', 'Blog']
         <span class="font-bold tracking-wide text-sm text-teal-glow">PANDA</span>
       </div>
 
-      <!-- Nav links -->
-      <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
-        <a
-          v-for="link in navLinks"
-          :key="link"
-          href="#"
-          class="text-sm text-gray-300 hover:text-white transition-colors duration-200"
-        >
-          {{ link }}
-        </a>
-      </nav>
+      <!-- Nav links + CTA grouped on the right -->
+      <div class="ml-auto flex items-center gap-6">
+        <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
+          <a
+            v-for="link in navLinks"
+            :key="link"
+            href="#"
+            class="text-sm text-gray-300 hover:text-white transition-colors duration-200"
+          >
+            {{ link }}
+          </a>
+        </nav>
 
-      <!-- CTA button -->
-      <button
-        type="button"
-        class="shrink-0 px-5 py-2 bg-mint text-navy-deep text-sm font-semibold rounded-full hover:scale-105 active:scale-95 transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mint/60"
-      >
-        Get Started — Free
-      </button>
+        <!-- CTA button -->
+        <button
+          type="button"
+          class="shrink-0 px-5 py-2 bg-mint text-navy-deep text-sm font-semibold rounded-full hover:scale-105 active:scale-95 transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mint/60"
+        >
+          Get Started — Free
+        </button>
+      </div>
 
     </div>
   </header>
