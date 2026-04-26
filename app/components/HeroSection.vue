@@ -119,7 +119,7 @@ const cards = [
   },
   {
     name: "Python",
-    image: "/pythongenlow.png",
+    image: "/pythonGenLow.png",
     glowColor: "yellow",
     size: "lg" as const,
     zIndex: 2,
@@ -407,14 +407,14 @@ const suggestions = [
       </div>
 
       <!-- Suggestion pills -->
-      <div class="flex flex-wrap justify-center gap-2 mt-5 pb-24">
+      <div class="flex flex-wrap justify-center gap-2 mt-5 pb-24 z-10">
         <button
           v-for="s in suggestions"
           :key="s.label"
           type="button"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-navy-light/40 border border-white/10 rounded-full text-xs text-gray-300 hover:text-white hover:border-white/30 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-glow/50"
+          class="inline-flex cursor-pointer items-center gap-2 px-4 py-2 bg-navy-light/40 border border-white/10 rounded-full text-sm text-gray-300 hover:text-white hover:border-white/30 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-glow/50"
         >
-          <Icon :name="s.icon" size="12" aria-hidden="true" />
+          <Icon :name="s.icon" size="14" aria-hidden="true" />
           {{ s.label }}
         </button>
       </div>
