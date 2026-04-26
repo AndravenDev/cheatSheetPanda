@@ -6,7 +6,7 @@ let rafId: number | null = null;
 const updateScale = () => {
   if (rafId !== null) return;
   rafId = requestAnimationFrame(() => {
-    arenaScale.value = Math.min(1, Math.max(0.28, window.innerWidth / 1152));
+    arenaScale.value = Math.min(1, Math.max(0.28, window.innerWidth / 1252));
     rafId = null;
   });
 };
@@ -113,7 +113,7 @@ const cards = [
     size: "sm" as const,
     zIndex: 1,
     side: "left",
-    pos: { top: "310px", left: "0px" },
+    pos: { top: "270px", left: "30px" },
     rotation: "-15deg",
     delay: "1s",
   },
@@ -124,7 +124,7 @@ const cards = [
     size: "lg" as const,
     zIndex: 2,
     side: "left",
-    pos: { top: "130px", left: "70px" },
+    pos: { top: "90px", left: "100px" },
     rotation: "-12deg",
     delay: "0s",
   },
@@ -136,7 +136,7 @@ const cards = [
     size: "sm" as const,
     zIndex: 1,
     side: "left",
-    pos: { top: "250px", left: "200px" },
+    pos: { top: "210px", left: "230px" },
     rotation: "-10deg",
     delay: "1s",
   },
@@ -147,7 +147,7 @@ const cards = [
     size: "lg" as const,
     zIndex: 1,
     side: "left",
-    pos: { top: "130px", left: "270px" },
+    pos: { top: "90px", left: "300px" },
     rotation: "-7deg",
     delay: "0.5s",
   },
@@ -158,7 +158,7 @@ const cards = [
     size: "lg" as const,
     zIndex: 1,
     side: "left",
-    pos: { top: "120px", left: "410px" },
+    pos: { top: "80px", left: "440px" },
     rotation: "-3deg",
     delay: "1.7s",
   },
@@ -236,6 +236,9 @@ const cards = [
 const leftCards = computed(() => cards.filter(c => c.side === 'left'));
 const rightCards = computed(() => cards.filter(c => c.side === 'right'));
 
+const mobileTopCards = ['Python', 'React', 'CSS Grid'].map(n => cards.find(c => c.name === n)!);
+const mobileBottomCards = ['Docker', 'Git', 'JavaScript'].map(n => cards.find(c => c.name === n)!);
+
 const suggestions = [
   { label: "React Hooks", icon: "simple-icons:react" },
   { label: "Nginx Config", icon: "simple-icons:nginx" },
@@ -271,9 +274,38 @@ const suggestions = [
         </span>
       </div>
 
-      <!-- Floating cards arena + central panda -->
+      <!-- Mobile: selected cards + panda -->
+      <div class="md:hidden flex flex-col items-center mt-6 mb-2">
+        <div class="flex justify-center gap-4 mb-2">
+          <FloatingCard
+            v-for="card in mobileTopCards"
+            :key="card.name"
+            :name="card.name"
+            :image="card.image"
+            :glow-color="card.glowColor"
+            size="sm"
+          />
+        </div>
+        <img
+          src="/largePandaUpscale.png"
+          alt="Panda mascot at laptop"
+          class="w-56 h-56 object-contain select-none"
+        />
+        <div class="flex justify-center gap-4 mt-2">
+          <FloatingCard
+            v-for="card in mobileBottomCards"
+            :key="card.name"
+            :name="card.name"
+            :image="card.image"
+            :glow-color="card.glowColor"
+            size="sm"
+          />
+        </div>
+      </div>
+
+      <!-- Floating cards arena + central panda (md+) -->
       <!-- Outer wrapper controls vertical space in the flow -->
-      <div class="relative w-full" :style="{ height: `${560 * arenaScale}px` }">
+      <div class="relative w-full hidden md:block" :style="{ height: `${560 * arenaScale}px` }">
         <!-- Inner arena: fixed design width, scaled down from top-center -->
         <div
           class="absolute top-0 left-1/2 flex"
@@ -344,7 +376,7 @@ const suggestions = [
       </div>
 
       <!-- Search bar -->
-      <div class="w-full max-w-2xl mt-[-120px] px-4 sm:px-0">
+      <div class="w-full max-w-2xl mt-4 md:mt-[-120px] px-4 sm:px-0">
         <label for="cheatsheet-search" class="sr-only"
           >Search cheatsheets</label
         >
