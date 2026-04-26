@@ -240,11 +240,11 @@ const mobileTopCards = ['Python', 'React', 'CSS Grid'].map(n => cards.find(c => 
 const mobileBottomCards = ['Docker', 'Git', 'JavaScript'].map(n => cards.find(c => c.name === n)!);
 
 const suggestions = [
-  { label: "React Hooks", icon: "simple-icons:react" },
-  { label: "Nginx Config", icon: "simple-icons:nginx" },
-  { label: "Python Regex", icon: "simple-icons:python" },
-  { label: "Git Commands", icon: "simple-icons:git" },
-  { label: "JS Array Methods", icon: "simple-icons:javascript" },
+  { label: "React Hooks", image: "/reactSmallLogo.png" },
+  { label: "Nginx Config", image: "/nginxSmallLogo.webp" },
+  { label: "Python Regex", image: "/pythonSmallLogo.png" },
+  { label: "Git Commands", image: "/gitSmallLogo.png" },
+  { label: "JS Array Methods", image: "/jsSmallLogo.webp" },
 ];
 </script>
 
@@ -414,7 +414,7 @@ const suggestions = [
           type="button"
           class="inline-flex cursor-pointer items-center gap-2 px-4 py-2 bg-navy-light/40 border border-white/10 rounded-full text-sm text-gray-300 hover:text-white hover:border-white/30 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-glow/50"
         >
-          <Icon :name="s.icon" size="14" aria-hidden="true" />
+          <img :src="s.image" :alt="s.label" class="w-6 h-6 object-contain" aria-hidden="true" />
           {{ s.label }}
         </button>
       </div>
