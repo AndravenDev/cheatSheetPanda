@@ -110,10 +110,10 @@ const cards = [
     name: "Frag",
     image: "/frag.png",
     glowColor: "teal",
-    size: "md" as const,
+    size: "sm" as const,
     zIndex: 1,
     side: "left",
-    pos: { top: "340px", left: "20px" },
+    pos: { top: "310px", left: "0px" },
     rotation: "-15deg",
     delay: "1s",
   },
@@ -124,8 +124,8 @@ const cards = [
     size: "lg" as const,
     zIndex: 2,
     side: "left",
-    pos: { top: "200px", left: "90px" },
-    rotation: "-9deg",
+    pos: { top: "130px", left: "70px" },
+    rotation: "-12deg",
     delay: "0s",
   },
   {
@@ -136,8 +136,8 @@ const cards = [
     size: "sm" as const,
     zIndex: 1,
     side: "left",
-    pos: { top: "270px", left: "220px" },
-    rotation: "-7deg",
+    pos: { top: "250px", left: "200px" },
+    rotation: "-10deg",
     delay: "1s",
   },
   {
@@ -147,8 +147,8 @@ const cards = [
     size: "lg" as const,
     zIndex: 1,
     side: "left",
-    pos: { top: "160px", left: "280px" },
-    rotation: "-3deg",
+    pos: { top: "130px", left: "270px" },
+    rotation: "-7deg",
     delay: "0.5s",
   },
   {
@@ -158,8 +158,8 @@ const cards = [
     size: "lg" as const,
     zIndex: 1,
     side: "left",
-    pos: { top: "100px", left: "400px" },
-    rotation: "0deg",
+    pos: { top: "120px", left: "410px" },
+    rotation: "-3deg",
     delay: "1.7s",
   },
   {
@@ -169,8 +169,8 @@ const cards = [
     size: "lg" as const,
     zIndex: 1,
     side: "right",
-    pos: { top: "60px", left: "0px" },
-    rotation: "3deg",
+    pos: { top: "60px", left: "120px" },
+    rotation: "6deg",
     delay: "0.7s",
   },
   {
@@ -178,10 +178,10 @@ const cards = [
     image: "/dockerGlow.png",
     glowColor: "blue",
     size: "lg" as const,
-    zIndex: 1,
+    zIndex: 3,
     side: "right",
-    pos: { top: "28px", left: "120px" },
-    rotation: "5deg",
+    pos: { top: "60px", left: "240px" },
+    rotation: "7deg",
     delay: "1.2s",
   },
   {
@@ -189,9 +189,9 @@ const cards = [
     image: "/command.png",
     glowColor: "green",
     size: "sm" as const,
-    zIndex: 1,
+    zIndex: 2,
     side: "right",
-    pos: { top: "150px", left: "220px" },
+    pos: { top: "210px", left: "370px" },
     rotation: "10deg",
     delay: "2.2s",
   },
@@ -201,9 +201,9 @@ const cards = [
     glowColor: "orange",
     glassTint: "rgba(30,64,175,0.30)",
     size: "lg" as const,
-    zIndex: 1,
+    zIndex: 3,
     side: "right",
-    pos: { top: "90px", left: "280px" },
+    pos: { top: "90px", left: "370px" },
     rotation: "14deg",
     delay: "0.3s",
   },
@@ -215,7 +215,7 @@ const cards = [
     size: "sm" as const,
     zIndex: 1,
     side: "right",
-    pos: { top: "200px", left: "370px" },
+    pos: { top: "260px", left: "520px" },
     rotation: "15deg",
     delay: "1.5s",
   },
@@ -227,7 +227,7 @@ const cards = [
     size: "lg" as const,
     zIndex: 1,
     side: "right",
-    pos: { top: "130px", left: "410px" },
+    pos: { top: "90px", left: "520px" },
     rotation: "18deg",
     delay: "2s",
   },
@@ -261,9 +261,9 @@ const suggestions = [
       >
     </div>
 
-    <div class="relative max-w-7xl mx-auto px-6 flex flex-col items-center">
+    <div class="relative  mx-auto px-2 flex flex-col items-center">
       <!-- Pill badge -->
-      <div class="mt-12 mb-6 lg:mt-20 lg:mb-10">
+      <div class="mt-12 mb-2 lg:mt-20 lg:mb-4">
         <span
           class="inline-flex items-center gap-2 px-4 py-2 bg-navy-light/50 border border-white/10 rounded-full text-sm text-gray-300 backdrop-blur-sm"
         >
@@ -278,7 +278,7 @@ const suggestions = [
         <div
           class="absolute top-0 left-1/2 flex"
           :style="{
-            width: '1152px',
+            width: '1252px',
             minHeight: '560px',
             transform: `translateX(-50%) scale(${arenaScale})`,
             transformOrigin: 'top center',
@@ -329,7 +329,7 @@ const suggestions = [
           </div>
 
           <!-- Central panda mascot -->
-          <!-- <div
+          <div
             class="absolute inset-0 flex items-center justify-center pointer-events-none"
             style="z-index: 10"
           >
@@ -339,21 +339,22 @@ const suggestions = [
               class="w-[520px] h-[520px] object-contain select-none"
 
             />
-          </div> -->
+          </div>
         </div>
       </div>
 
       <!-- Search bar -->
-      <div class="w-full max-w-2xl mt-2 lg:mt-4 px-4 sm:px-0">
+      <div class="w-full max-w-2xl mt-[-120px] px-4 sm:px-0">
         <label for="cheatsheet-search" class="sr-only"
           >Search cheatsheets</label
         >
         <div
-          class="relative flex items-center rounded-full border transition-all duration-300"
+          class="relative flex items-center rounded-full transition-all duration-300"
+          style="border-width: 3px"
           :class="
             searchFocused
-              ? 'border-teal-glow/60 bg-navy-light/70 shadow-[0_0_30px_rgba(45,212,191,0.45)] scale-[1.01]'
-              : 'border-white/10 bg-navy-light/40 shadow-[0_0_20px_rgba(45,212,191,0.15)]'
+              ? 'border-cyan-300 bg-navy-light/70 shadow-[0_0_12px_rgba(6,182,212,0.6),0_0_35px_rgba(6,182,212,0.3),0_0_70px_rgba(6,182,212,0.15)] scale-[1.01]'
+              : 'border-cyan-300/60 bg-navy-light/40 shadow-[0_0_8px_rgba(6,182,212,0.4),0_0_25px_rgba(6,182,212,0.2),0_0_50px_rgba(6,182,212,0.08)]'
           "
         >
           <Icon

@@ -31,12 +31,12 @@ const iconColorMap: Record<string, string> = {
   teal: '#2dd4bf',
 }
 
-const dimMap: Record<string, number> = { sm: 80, md: 104, lg: 128 }
-const dim = computed(() => `${dimMap[props.size ?? 'md'] ?? 104}px`)
+const dimMap: Record<string, number> = { sm: 100, md: 170, lg: 210 }
+const dim = computed(() => `${dimMap[props.size ?? 'md'] ?? 170}px`)
 
 const glow = computed(() => glowMap[props.glowColor ?? ''] ?? 'rgba(45,212,191,0.3)')
 const iconColor = computed(() => iconColorMap[props.glowColor ?? ''] ?? '#2dd4bf')
-const iconSize = computed(() => props.size === 'lg' ? 44 : props.size === 'sm' ? 24 : 32)
+const iconSize = computed(() => props.size === 'lg' ? 72 : props.size === 'sm' ? 44 : 56)
 const labelClass = computed(() => props.size === 'lg' ? 'text-white/70 text-[12px] font-medium whitespace-nowrap leading-none' : props.size === 'sm' ? 'text-white/70 text-[9px] font-medium whitespace-nowrap leading-none' : 'text-white/70 text-[10px] font-medium whitespace-nowrap leading-none')
 </script>
 
