@@ -41,17 +41,16 @@ const labelClass = computed(() => props.size === 'lg' ? 'text-white/70 text-[12p
 </script>
 
 <template>
-  <div :style="{ transform: rotation ? `rotate(${rotation})` : undefined }">
+  <div :style="{ transform: rotation ? `rotate(${rotation})` : undefined}">
     <!-- PNG mode: fixed 96×96, no card chrome -->
     <img
       v-if="image"
       :src="image"
       :alt="name"
-      class="animate-float hover:scale-110 transition-transform duration-300 cursor-default select-none object-contain drop-shadow-[0_0_28px_var(--card-glow)]"
+      class="hover:scale-110 transition-transform duration-300 cursor-default select-none object-contain drop-shadow-[0_0_28px_var(--card-glow)]"
       :style="{
         width: dim,
         height: dim,
-        animationDelay: delay ?? '0s',
         '--card-glow': glow,
       }"
     />
@@ -59,7 +58,7 @@ const labelClass = computed(() => props.size === 'lg' ? 'text-white/70 text-[12p
     <!-- Icon mode: fixed 96×96 glassmorphism card -->
     <div
       v-else-if="icon"
-      class="flex flex-col items-center justify-center gap-1.5 backdrop-blur-md border border-white/10 rounded-2xl animate-float hover:scale-110 transition-transform duration-300 cursor-default select-none"
+      class="flex flex-col items-center justify-center gap-1.5 backdrop-blur-md border border-white/10 rounded-2xl hover:scale-110 transition-transform duration-300 cursor-default select-none"
       :style="{
         width: dim,
         height: dim,
@@ -67,7 +66,6 @@ const labelClass = computed(() => props.size === 'lg' ? 'text-white/70 text-[12p
         boxShadow: innerGlow ? `0 0 28px ${glow}, inset 0 0 40px ${glow}, inset 0 0 80px ${glow}` : `0 0 28px ${glow}`,
         borderColor: innerGlow ? iconColor : undefined,
         borderWidth: innerGlow ? '3px' : undefined,
-        animationDelay: delay ?? '0s',
       }"
     >
       <Icon :name="icon" :size="iconSize" :style="{ color: iconColor }" aria-hidden="true" />

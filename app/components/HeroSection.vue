@@ -1,6 +1,24 @@
 <script setup lang="ts">
 const searchFocused = ref(false);
 
+const arenaScale = ref(1);
+let rafId: number | null = null;
+const updateScale = () => {
+  if (rafId !== null) return;
+  rafId = requestAnimationFrame(() => {
+    arenaScale.value = Math.min(1, Math.max(0.28, window.innerWidth / 1152));
+    rafId = null;
+  });
+};
+onMounted(() => {
+  updateScale();
+  window.addEventListener('resize', updateScale, { passive: true });
+});
+onUnmounted(() => {
+  window.removeEventListener('resize', updateScale);
+  if (rafId !== null) cancelAnimationFrame(rafId);
+});
+
 // Decorative background symbols — scattered asymmetrically
 const codeSymbols = [
   {
@@ -101,7 +119,7 @@ const cards = [
   },
   {
     name: "Python",
-    image: "/pythonBetter.png",
+    image: "/pythongenlow.png",
     glowColor: "yellow",
     size: "lg" as const,
     zIndex: 2,
@@ -112,7 +130,7 @@ const cards = [
   },
   {
     name: "Node",
-    icon: "simple-icons:nginx",
+    image: "/node.png",
     glowColor: "green",
     innerGlow: true,
     size: "sm" as const,
@@ -124,7 +142,7 @@ const cards = [
   },
   {
     name: "React",
-    image: "/react.png",
+    image: "/reactGlowLow.png",
     glowColor: "cyan",
     size: "lg" as const,
     zIndex: 1,
@@ -135,66 +153,66 @@ const cards = [
   },
   {
     name: "CSS Grid",
-    image: "/cssGridUpscaled.png",
+    image: "/cssGridUpscaled3Glow.png",
     glowColor: "purple",
     size: "lg" as const,
     zIndex: 1,
     side: "left",
-    pos: { top: "150px", left: "400px" },
+    pos: { top: "100px", left: "400px" },
     rotation: "0deg",
     delay: "1.7s",
   },
   {
     name: "SQL",
-    image: "/sql.png",
+    image: "/sqlGlow.png",
     glowColor: "blue",
-    size: "md" as const,
+    size: "lg" as const,
     zIndex: 1,
     side: "right",
-    pos: { top: "60px", left: "160px" },
+    pos: { top: "60px", left: "0px" },
     rotation: "3deg",
     delay: "0.7s",
   },
   {
     name: "Docker",
-    image: "/docker.png",
+    image: "/pythongen7.png",
     glowColor: "blue",
-    size: "md" as const,
+    size: "lg" as const,
     zIndex: 1,
     side: "right",
-    pos: { top: "28px", left: "280px" },
+    pos: { top: "28px", left: "120px" },
     rotation: "-3deg",
     delay: "1.2s",
   },
   {
     name: "Command",
-    image: "/command.png",
+    image: "/pythongen8.png",
     glowColor: "green",
-    size: "md" as const,
+    size: "lg" as const,
     zIndex: 1,
     side: "right",
-    pos: { top: "50px", left: "380px" },
+    pos: { top: "50px", left: "280px" },
     rotation: "-8deg",
     delay: "2.2s",
   },
   {
     name: "Git",
-    image: "/gitUpscaled.png",
+    image: "/pythongen14.png",
     glowColor: "orange",
     glassTint: "rgba(30,64,175,0.30)",
-    size: "md" as const,
+    size: "lg" as const,
     zIndex: 1,
     side: "right",
-    pos: { top: "90px", left: "480px" },
+    pos: { top: "90px", left: "440px" },
     rotation: "-4deg",
     delay: "0.3s",
   },
   {
     name: "Args",
-    icon: "lucide:chevron-right",
+    image: "/pythongen10.png",
     glowColor: "teal",
     innerGlow: true,
-    size: "md" as const,
+    size: "lg" as const,
     zIndex: 1,
     side: "right",
     pos: { top: "148px", left: "580px" },
@@ -245,7 +263,7 @@ const suggestions = [
 
     <div class="relative max-w-7xl mx-auto px-6 flex flex-col items-center">
       <!-- Pill badge -->
-      <div class="mt-20 mb-10">
+      <div class="mt-12 mb-6 lg:mt-20 lg:mb-10">
         <span
           class="inline-flex items-center gap-2 px-4 py-2 bg-navy-light/50 border border-white/10 rounded-full text-sm text-gray-300 backdrop-blur-sm"
         >
@@ -254,70 +272,79 @@ const suggestions = [
       </div>
 
       <!-- Floating cards arena + central panda -->
-      <div class="relative w-full max-w-6xl flex" style="min-height: 560px">
-        <!-- Left cards container — hidden on mobile -->
-        <div class="flex relative" style="width: 540px">
-          <div
-            v-for="card in leftCards"
-            :key="card.name"
-            class=""
-            :style="{ ...card.pos, zIndex: card.zIndex }"
-          >
-            <FloatingCard
-              :name="card.name"
-              :icon="card.icon"
-              :image="card.image"
-              :glow-color="card.glowColor"
-              :glass-tint="card.glassTint"
-              :inner-glow="card.innerGlow"
-              :size="card.size"
-              :rotation="card.rotation"
-              :delay="card.delay"
-            />
-          </div>
-        </div>
-
-        <!-- Right cards container — hidden on mobile -->
-        <div class="flex ml-18 relative" style="left: 40px">
-          <div
-            v-for="card in rightCards"
-            :key="card.name"
-            class=""
-            :style="{ ...card.pos, zIndex: card.zIndex }"
-          >
-            <FloatingCard
-              :name="card.name"
-              :icon="card.icon"
-              :image="card.image"
-              :glow-color="card.glowColor"
-              :glass-tint="card.glassTint"
-              :inner-glow="card.innerGlow"
-              :size="card.size"
-              :rotation="card.rotation"
-              :delay="card.delay"
-            />
-          </div>
-        </div>
-
-        <!-- Central panda mascot -->
+      <!-- Outer wrapper controls vertical space in the flow -->
+      <div class="relative w-full" :style="{ height: `${560 * arenaScale}px` }">
+        <!-- Inner arena: fixed design width, scaled down from top-center -->
         <div
-          class="absolute inset-0 flex items-center justify-center pointer-events-none" style="z-index: 10"
+          class="absolute top-0 left-1/2 flex"
+          :style="{
+            width: '1152px',
+            minHeight: '560px',
+            transform: `translateX(-50%) scale(${arenaScale})`,
+            transformOrigin: 'top center',
+          }"
         >
-          <img
-            src="/largePandaUpscale.png"
-            alt="Panda mascot at laptop"
-            class="w-[520px] h-[520px] object-contain select-none"
-            style="
-              filter: drop-shadow(0 0 60px rgba(120, 180, 255, 0.35))
-                drop-shadow(0 0 180px rgba(100, 160, 240, 0.25))
-                drop-shadow(0 0 400px rgba(80, 140, 220, 0.15));
-            "
-          />
+          <!-- Left cards container -->
+          <div class="relative" style="width: 540px; flex-shrink: 0">
+            <div
+              v-for="card in leftCards"
+              :key="card.name"
+              class="absolute"
+              :style="{ ...card.pos, zIndex: card.zIndex }"
+            >
+              <FloatingCard
+                :name="card.name"
+                :icon="card.icon"
+                :image="card.image"
+                :glow-color="card.glowColor"
+                :glass-tint="card.glassTint"
+                :inner-glow="card.innerGlow"
+                :size="card.size"
+                :rotation="card.rotation"
+                :delay="card.delay"
+              />
+            </div>
+          </div>
+
+          <!-- Right cards container -->
+          <div class="relative flex-1">
+            <div
+              v-for="card in rightCards"
+              :key="card.name"
+              class="absolute"
+              :style="{ ...card.pos, zIndex: card.zIndex }"
+            >
+              <FloatingCard
+                :name="card.name"
+                :icon="card.icon"
+                :image="card.image"
+                :glow-color="card.glowColor"
+                :glass-tint="card.glassTint"
+                :inner-glow="card.innerGlow"
+                :size="card.size"
+                :rotation="card.rotation"
+                :delay="card.delay"
+              />
+            </div>
+          </div>
+
+          <!-- Central panda mascot -->
+          <div
+            class="absolute inset-0 flex items-center justify-center pointer-events-none"
+            style="z-index: 10"
+          >
+            <img
+              src="/largePandaUpscale.png"
+              alt="Panda mascot at laptop"
+              class="w-[520px] h-[520px] object-contain select-none"
+
+            />
+          </div>
         </div>
       </div>
 
       <!-- Search bar -->
-      <div class="w-full max-w-2xl mt-4">
+      <div class="w-full max-w-2xl mt-2 lg:mt-4 px-4 sm:px-0">
         <label for="cheatsheet-search" class="sr-only"
           >Search cheatsheets</label
         >
