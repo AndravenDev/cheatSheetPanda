@@ -24,8 +24,8 @@ const navLinks = ['Browse', 'Submit', 'Pricing', 'Blog']
       <!-- Logo group -->
       <div class="flex items-center gap-2 shrink-0">
         <img src="/pandaLogo.png" alt="Panda logo" class="w-24 h-24 object-contain" aria-hidden="true" />
-        <span class="font-bold tracking-wide text-3xl text-white">CHEATSHEET</span>
-        <span class="font-bold tracking-wide text-3xl text-teal-glow">PANDA</span>
+        <span class="font-bold tracking-wide text-base sm:text-xl md:text-2xl lg:text-3xl text-white">CHEATSHEET</span>
+        <span class="font-bold tracking-wide text-base sm:text-xl md:text-2xl lg:text-3xl text-teal-glow">PANDA</span>
       </div>
 
       <!-- Desktop: nav + CTA -->
