@@ -164,7 +164,7 @@ const cards = [
   },
   {
     name: "SQL",
-    image: "/sqlGlow.png",
+    image: "/sqlUpscaled.png",
     glowColor: "blue",
     size: "lg" as const,
     zIndex: 1,
@@ -175,60 +175,60 @@ const cards = [
   },
   {
     name: "Docker",
-    image: "/pythongen7.png",
+    image: "/dockerGlow.png",
     glowColor: "blue",
     size: "lg" as const,
     zIndex: 1,
     side: "right",
     pos: { top: "28px", left: "120px" },
-    rotation: "-3deg",
+    rotation: "5deg",
     delay: "1.2s",
   },
   {
     name: "Command",
-    image: "/pythongen8.png",
+    image: "/command.png",
     glowColor: "green",
-    size: "lg" as const,
+    size: "sm" as const,
     zIndex: 1,
     side: "right",
-    pos: { top: "50px", left: "280px" },
-    rotation: "-8deg",
+    pos: { top: "150px", left: "220px" },
+    rotation: "10deg",
     delay: "2.2s",
   },
   {
     name: "Git",
-    image: "/pythongen14.png",
+    image: "/gitUpscaledGlow.png",
     glowColor: "orange",
     glassTint: "rgba(30,64,175,0.30)",
     size: "lg" as const,
     zIndex: 1,
     side: "right",
-    pos: { top: "90px", left: "440px" },
-    rotation: "-4deg",
+    pos: { top: "90px", left: "280px" },
+    rotation: "14deg",
     delay: "0.3s",
   },
   {
     name: "Args",
-    image: "/pythongen10.png",
+    image: "/unixUpscaled.png",
     glowColor: "teal",
     innerGlow: true,
-    size: "lg" as const,
+    size: "sm" as const,
     zIndex: 1,
     side: "right",
-    pos: { top: "148px", left: "580px" },
-    rotation: "5deg",
+    pos: { top: "200px", left: "370px" },
+    rotation: "15deg",
     delay: "1.5s",
   },
   {
     name: "JavaScript",
-    icon: "simple-icons:javascript",
+    image: "/jsGlow.png",
     glowColor: "yellow",
     innerGlow: true,
-    size: "md" as const,
+    size: "lg" as const,
     zIndex: 1,
     side: "right",
-    pos: { top: "220px", left: "680px" },
-    rotation: "8deg",
+    pos: { top: "130px", left: "410px" },
+    rotation: "18deg",
     delay: "2s",
   },
 ];
@@ -329,7 +329,7 @@ const suggestions = [
           </div>
 
           <!-- Central panda mascot -->
-          <div
+          <!-- <div
             class="absolute inset-0 flex items-center justify-center pointer-events-none"
             style="z-index: 10"
           >
@@ -339,7 +339,7 @@ const suggestions = [
               class="w-[520px] h-[520px] object-contain select-none"
 
             />
-          </div>
+          </div> -->
         </div>
       </div>
 
