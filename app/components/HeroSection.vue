@@ -250,7 +250,7 @@ const suggestions = [
 
 <template>
   <section
-    class="relative min-h-screen overflow-hidden pt-16 bg-[url('/background.png')] bg-cover bg-center bg-no-repeat"
+    class="relative min-h-screen overflow-hidden pt-16 bg-[url('/backgroundD.png')] bg-cover bg-center bg-no-repeat"
     aria-label="Hero"
   >
     <!-- Decorative background code symbols -->
