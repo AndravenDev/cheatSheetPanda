@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../../app/**/*.vue";
 
 @theme {
   --color-navy-deep: #0a1628;
