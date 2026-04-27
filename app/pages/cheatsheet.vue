@@ -159,7 +159,6 @@ const configFiles = [
         </div>
 
       </div>
-      <div>Heyy ZZZ</div>
     </div>
   </div>
 </template>
