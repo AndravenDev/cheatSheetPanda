@@ -9,7 +9,12 @@ function onScroll() {
 onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
-const navLinks = ['Browse', 'Submit', 'Pricing', 'Blog']
+const navLinks = [
+  { label: 'Browse', href: '/' },
+  { label: 'Submit', href: '/' },
+  { label: 'Pricing', href: '/' },
+  { label: 'CheatSheet', href: '/cheatsheet' },
+]
 </script>
 
 <template>
@@ -33,11 +38,11 @@ const navLinks = ['Browse', 'Submit', 'Pricing', 'Blog']
         <nav class="flex items-center gap-6" aria-label="Main navigation">
           <a
             v-for="link in navLinks"
-            :key="link"
-            href="#"
+            :key="link.label"
+            :href="link.href"
             class="text-sm text-gray-300 hover:text-white transition-colors duration-200"
           >
-            {{ link }}
+            {{ link.label }}
           </a>
         </nav>
         <button
@@ -68,12 +73,12 @@ const navLinks = ['Browse', 'Submit', 'Pricing', 'Blog']
       <nav class="flex flex-col gap-3" aria-label="Mobile navigation">
         <a
           v-for="link in navLinks"
-          :key="link"
-          href="#"
+          :key="link.label"
+          :href="link.href"
           class="text-sm text-gray-300 hover:text-white transition-colors duration-200"
           @click="menuOpen = false"
         >
-          {{ link }}
+          {{ link.label }}
         </a>
       </nav>
       <button
