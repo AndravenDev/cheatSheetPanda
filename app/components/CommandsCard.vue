@@ -10,7 +10,9 @@
             type: String,
             default: 'commands'
         },
-        codeBlock: String
+        codeBlock: String,
+        iconTop: String,
+        iconBottom: String,
     })
 </script>
 
@@ -20,10 +22,12 @@
             <Icon v-if="icon" :name="icon" size="15" />
             {{ title }}
         </div>
-        <div class="border border-gray-300 rounded-tr-lg rounded-br-lg rounded-bl-lg p-2">
+        <div class="relative border border-gray-300 rounded-tr-lg rounded-br-lg rounded-bl-lg p-2">
+            <img v-if="iconTop" :src="iconTop" class="absolute -top-8 right-2 w-10 h-10 object-contain pointer-events-none z-10" />
+            <img v-if="iconBottom" :src="iconBottom" class="absolute -bottom-0 right-2 w-10 h-10 object-contain pointer-events-none z-10" />
             <ul v-if="type === 'commands'">
                 <li v-for="command in commands" :key="command.command" class="flex items-center gap-2 mb-2">
-                    <span class="bg-gray-100 rounded px-1.5 py-0.5 text-xs font-mono w-28 sm:w-36 shrink-0">{{ command.command }}</span>
+                    <span class="bg-gray-100 rounded px-1.5 py-0.5 text-xs font-mono w-36 sm:w-36 shrink-0">{{ command.command }}</span>
                     <span class="text-gray-600 text-xs">{{ command.description }}</span>
                 </li>
             </ul>

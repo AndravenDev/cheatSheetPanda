@@ -34,20 +34,20 @@ import {
         <div class="flex-1 min-w-0">
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-3 sm:px-0">
             <div>
-              <CommandsCard :commands="containerManagement" title="Container Management" icon="lucide:box" />
+              <CommandsCard :commands="containerManagement" title="Container Management" icon="lucide:box" icon-bottom="/pandaQuestion.png" />
               <CommandsCard :commands="dockerSecrets" title="Docker Secrets" icon="lucide:key" />
             </div>
             <div>
-              <CommandsCard :commands="imageManagement" title="Image Management" icon="lucide:layers" />
+              <CommandsCard :commands="imageManagement" title="Image Management" icon="lucide:layers" icon-bottom="/pandaWorker.png" />
               <CommandsCard :commands="volumeNetwork" title="Volume & Network" icon="lucide:hard-drive" />
             </div>
             <div>
               <CommandsCard :commands="advancedTips" type="tips" title="Advanced Tips" icon="lucide:lightbulb" />
-              <CommandsCard :commands="containerLifecycle" title="Container Lifecycle" icon="lucide:refresh-cw" />
+              <CommandsCard :commands="containerLifecycle" title="Container Lifecycle" icon="lucide:refresh-cw" icon-top="/pandaQuestion.png" />
               <CommandsCard :commands="systemCommands" title="System Commands" icon="lucide:terminal" />
             </div>
             <div>
-              <CommandsCard type="code" :codeBlock="dockerComposeCode" title="Docker Compose" icon="lucide:file-code" />
+              <CommandsCard type="code" :codeBlock="dockerComposeCode" title="Docker Compose" icon="lucide:file-code" icon-top="/pandaPeek.png" icon-bottom="/pandaWorker.png" />
               <CommandsCard :commands="configFiles" title="Config Files" icon="lucide:file-cog" />
               <CommandsCard :commands="registryOperations" title="Registry Operations" icon="lucide:cloud" />
               <CommandsCard :commands="dockerOperations" title="Docker Operations" icon="lucide:activity" />
