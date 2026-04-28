@@ -16,7 +16,7 @@
 
 <template>
     <div class="break-inside-avoid mb-4">
-        <div class="w-full sm:w-fit whitespace-nowrap rounded-tl-lg rounded-tr-lg px-4 py-2 flex items-center gap-2" style="background-color: #59e1d3;">
+        <div class="w-fit whitespace-nowrap rounded-tl-lg rounded-tr-lg px-4 py-2 flex items-center gap-2" style="background-color: #59e1d3;">
             <Icon v-if="icon" :name="icon" size="15" />
             {{ title }}
         </div>

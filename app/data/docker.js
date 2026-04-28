@@ -41,10 +41,9 @@ export const imageManagement = [
 ]
 
 export const systemCommands = [
-  { command: "docker info", description: "System info" },
+  { command: "docker info --[OPTIONS]", description: "System info" },
   { command: "docker version", description: "Client & daemon" },
-  { command: "docker system prune", description: "Remove unused" },
-  { command: "docker system df", description: "Disk usage" },
+  { command: "docker system prune <params>", description: "Remove unused" },
 ]
 
 export const volumeNetwork = [
@@ -56,9 +55,9 @@ export const volumeNetwork = [
   { command: "docker network create", description: "Create network" },
   { command: "docker network ls", description: "List networks" },
   { command: "docker network inspect", description: "Network details" },
-  { command: "docker network connect", description: "Connect container" },
-  { command: "docker network disconnect", description: "Disconnect container" },
   { command: "docker network rm", description: "Remove network" },
+  { command: "docker network rm", description: "Remove multiple" },
+  { command: "docker network prune", description: "Remove unused" },
 ]
 
 export const containerLifecycle = [
@@ -68,9 +67,7 @@ export const containerLifecycle = [
   { command: "docker unpause", description: "Resume container" },
   { command: "docker stop", description: "Graceful stop" },
   { command: "docker kill", description: "Force kill" },
-  { command: "docker wait", description: "Wait exit code" },
   { command: "docker rm", description: "Remove stopped" },
-  { command: "docker commit", description: "Snapshot image" },
 ]
 
 export const dockerComposeCode = `version: '3.8'
@@ -100,11 +97,13 @@ export const registryOperations = [
   { command: "docker login", description: "Authenticate registry" },
   { command: "docker logout", description: "Log out" },
   { command: "docker search", description: "Search Hub" },
+  { command: "docker manifest inspect", description: "View image manifest" },
 ]
 
 export const dockerSecrets = [
   { command: "docker secret create", description: "Create secret" },
-  { command: "docker secret ls", description: "List secrets" },
+  { command: "docker secret ls -parameter", description: "List secrets" },
+  { command: "docker secret rm", description: "Remove secret" },
 ]
 
 export const advancedTips = [
@@ -119,6 +118,7 @@ export const advancedTips = [
 export const dockerOperations = [
   { command: "docker stats", description: "Resource usage" },
   { command: "docker top", description: "Running processes" },
+  { command: "docker events <parameters>", description: "Real-time events" },
 ]
 
 export const configFiles = [

@@ -28,18 +28,26 @@ import {
             style="color: #0d3b69; text-shadow: 0 0 6px #7dd3fc, 0 0 14px #38bdf8;"
           >DOCKER</span>
         </div>
-        <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4">
-          <CommandsCard :commands="containerManagement" title="Container Management" icon="lucide:box" />
-          <CommandsCard :commands="imageManagement" title="Image Management" icon="lucide:layers" />
-          <CommandsCard :commands="systemCommands" title="System Commands" icon="lucide:terminal" />
-          <CommandsCard :commands="volumeNetwork" title="Volume & Network" icon="lucide:hard-drive" />
-          <CommandsCard :commands="containerLifecycle" title="Container Lifecycle" icon="lucide:refresh-cw" />
-          <CommandsCard type="code" :codeBlock="dockerComposeCode" title="Docker Compose" icon="lucide:file-code" />
-          <CommandsCard :commands="registryOperations" title="Registry Operations" icon="lucide:cloud" />
-          <CommandsCard :commands="dockerSecrets" title="Docker Secrets" icon="lucide:key" />
-          <CommandsCard :commands="advancedTips" type="tips" title="Advanced Tips & Optimization" icon="lucide:lightbulb" />
-          <CommandsCard :commands="dockerOperations" title="Docker Operations" icon="lucide:activity" />
-          <CommandsCard :commands="configFiles" title="Config Files" icon="lucide:file-cog" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div>
+            <CommandsCard :commands="containerManagement" title="Container Management" icon="lucide:box" />
+            <CommandsCard :commands="dockerSecrets" title="Docker Secrets" icon="lucide:key" />
+          </div>
+          <div>
+            <CommandsCard :commands="imageManagement" title="Image Management" icon="lucide:layers" />
+            <CommandsCard :commands="volumeNetwork" title="Volume & Network" icon="lucide:hard-drive" />
+          </div>
+          <div>
+            <CommandsCard :commands="advancedTips" type="tips" title="Advanced Tips & Optimization" icon="lucide:lightbulb" />
+            <CommandsCard :commands="containerLifecycle" title="Container Lifecycle" icon="lucide:refresh-cw" />
+            <CommandsCard :commands="systemCommands" title="System Commands" icon="lucide:terminal" />
+          </div>
+          <div>
+            <CommandsCard type="code" :codeBlock="dockerComposeCode" title="Docker Compose" icon="lucide:file-code" />
+            <CommandsCard :commands="configFiles" title="Config Files" icon="lucide:file-cog" />
+            <CommandsCard :commands="registryOperations" title="Registry Operations" icon="lucide:cloud" />
+            <CommandsCard :commands="dockerOperations" title="Docker Operations" icon="lucide:activity" />
+          </div>
         </div>
 
       </div>
