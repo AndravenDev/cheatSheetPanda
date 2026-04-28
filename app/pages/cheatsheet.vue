@@ -16,7 +16,7 @@ import {
 
 
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-white overflow-x-hidden">
     <AppHeader />
 
     <div class="pt-16 max-w-7xl mx-auto px-4">
@@ -32,7 +32,7 @@ import {
 
         <!-- Main content -->
         <div class="flex-1 min-w-0">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-3 sm:px-0">
             <div>
               <CommandsCard :commands="containerManagement" title="Container Management" icon="lucide:box" />
               <CommandsCard :commands="dockerSecrets" title="Docker Secrets" icon="lucide:key" />
@@ -55,7 +55,7 @@ import {
           </div>
 
           <div class="mt-8 pb-8 flex justify-center">
-            <div class="w-fit">
+            <div class="w-fit max-w-full">
               <div class="flex flex-wrap items-center justify-center gap-2">
                 <span class="text-sm font-bold text-gray-700 uppercase tracking-widest shrink-0 mr-2">Tags</span>
                 <span v-for="tag in ['DockerContainers','DockerOrchestration','DevOPs','Microservices','ContainerIPS','ContainerSecurity']" :key="tag" class="px-3 py-1.5 text-sm text-gray-600 bg-gray-100 border border-gray-300 rounded-full hover:text-gray-900 hover:border-gray-400 cursor-pointer transition-colors">#{{ tag }}</span>
@@ -100,5 +100,14 @@ import {
 
       </div>
     </div>
+
+    <footer class="mt-4">
+      <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center gap-4 sm:justify-between">
+        <nav class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+          <a v-for="link in [{ label: 'Browse', href: '/' }, { label: 'Submit', href: '/' }, { label: 'Pricing', href: '/' }, { label: 'CheatSheet', href: '/cheatsheet' }]" :key="link.label" :href="link.href" class="text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors">{{ link.label }}</a>
+        </nav>
+        <span class="text-sm font-semibold text-gray-700 shrink-0">&copy; 2022 cheatsheetpanda.com</span>
+      </div>
+    </footer>
   </div>
 </template>

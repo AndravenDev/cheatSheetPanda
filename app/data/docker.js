@@ -44,6 +44,8 @@ export const systemCommands = [
   { command: "docker info --[OPTIONS]", description: "System info" },
   { command: "docker version", description: "Client & daemon" },
   { command: "docker system prune <params>", description: "Remove unused" },
+  { command: "docker system df", description: "Disk usage" },
+  { command: "docker context ls", description: "List contexts" },
 ]
 
 export const volumeNetwork = [
@@ -97,7 +99,7 @@ export const registryOperations = [
   { command: "docker login", description: "Authenticate registry" },
   { command: "docker logout", description: "Log out" },
   { command: "docker search", description: "Search Hub" },
-  { command: "docker manifest inspect", description: "View image manifest" },
+  { command: "docker manifest", description: "View image manifest" },
 ]
 
 export const dockerSecrets = [
@@ -108,7 +110,7 @@ export const dockerSecrets = [
 
 export const advancedTips = [
   { description: "Use multi-stage builds to keep final images small by separating build and runtime layers." },
-  { description: "Order Dockerfile instructions from least to most frequently changed to maximise layer cache reuse." },
+  { description: "Order Dockerfile instructions arranged from least to most frequently changed in order to further maximise layer cache reuse. " },
   { description: "Prefer COPY over ADD unless you need automatic tar extraction or remote URL fetching." },
   { description: "Use .dockerignore to exclude node_modules, .git, and build artifacts from the build context." },
   { description: "Pin base image versions (e.g. node:20-alpine) to ensure reproducible builds across environments." },
@@ -118,12 +120,10 @@ export const advancedTips = [
 export const dockerOperations = [
   { command: "docker stats", description: "Resource usage" },
   { command: "docker top", description: "Running processes" },
-  { command: "docker events <parameters>", description: "Real-time events" },
 ]
 
 export const configFiles = [
   { command: "~/.docker/config.json", description: "CLI config" },
   { command: "/etc/docker/daemon.json", description: "Daemon config" },
   { command: "docker config create", description: "Create config" },
-  { command: "docker config ls", description: "List configs" },
 ]

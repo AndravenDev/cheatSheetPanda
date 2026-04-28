@@ -24,13 +24,13 @@ const navLinks = [
       ? 'bg-navy-deep backdrop-blur-lg'
       : 'bg-navy-deep backdrop-blur-md'"
   >
-    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center gap-8">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center gap-4 sm:gap-8">
 
       <!-- Logo group -->
-      <div class="flex items-center gap-2 shrink-0">
-        <img src="/pandaLogo.png" alt="Panda logo" class="w-24 h-24 object-contain" aria-hidden="true" />
-        <span class="font-bold tracking-wide text-base sm:text-xl md:text-2xl lg:text-3xl text-white">CHEATSHEET</span>
-        <span class="font-bold tracking-wide text-base sm:text-xl md:text-2xl lg:text-3xl text-teal-glow">PANDA</span>
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <img src="/pandaLogo.png" alt="Panda logo" class="w-14 h-14 sm:w-24 sm:h-24 object-contain" aria-hidden="true" />
+        <span class="font-bold tracking-wide text-sm sm:text-xl md:text-2xl lg:text-3xl text-white">CHEATSHEET</span>
+        <span class="font-bold tracking-wide text-sm sm:text-xl md:text-2xl lg:text-3xl text-teal-glow">PANDA</span>
       </div>
 
       <!-- Desktop: nav + CTA -->
