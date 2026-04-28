@@ -19,7 +19,6 @@ onUnmounted(() => {
   if (rafId !== null) cancelAnimationFrame(rafId);
 });
 
-// Decorative background symbols — scattered asymmetrically
 const codeSymbols = [
   {
     text: "{}",
@@ -103,8 +102,6 @@ const codeSymbols = [
   },
 ];
 
-// Arch arc: parabola peaking at center (Docker, directly above panda),
-// descending symmetrically to both sides. Step = 100px, depth = 200px.
 const cards = [
   {
     name: "Frag",
@@ -253,7 +250,6 @@ const suggestions = [
     class="relative min-h-screen overflow-hidden pt-16 bg-[url('/backgroundD.png')] bg-cover bg-center bg-no-repeat"
     aria-label="Hero"
   >
-    <!-- Decorative background code symbols -->
     <div aria-hidden="true" class="pointer-events-none select-none">
       <span
         v-for="(sym, i) in codeSymbols"
@@ -265,7 +261,6 @@ const suggestions = [
     </div>
 
     <div class="relative max-w-7xl mx-auto px-4 w-full flex flex-col items-center">
-      <!-- Pill badge -->
       <div class="mt-2 mb-2 self-start">
         <span
           class="inline-flex items-center gap-2 px-4 py-2 bg-navy-light/50 border border-white/10 rounded-full text-sm text-gray-300 backdrop-blur-sm"
@@ -274,7 +269,6 @@ const suggestions = [
         </span>
       </div>
 
-      <!-- Mobile: selected cards + panda -->
       <div class="md:hidden flex flex-col items-center mt-6 mb-2">
         <div class="flex justify-center gap-4 mb-2">
           <FloatingCard
@@ -303,10 +297,7 @@ const suggestions = [
         </div>
       </div>
 
-      <!-- Floating cards arena + central panda (md+) -->
-      <!-- Outer wrapper controls vertical space in the flow -->
       <div class="relative w-full hidden md:block" :style="{ height: `${560 * arenaScale}px` }">
-        <!-- Inner arena: fixed design width, scaled down from top-center -->
         <div
           class="absolute top-0 left-1/2 flex"
           :style="{
@@ -316,7 +307,6 @@ const suggestions = [
             transformOrigin: 'top center',
           }"
         >
-          <!-- Left cards container -->
           <div class="relative" style="width: 540px; flex-shrink: 0">
             <div
               v-for="card in leftCards"
@@ -338,7 +328,6 @@ const suggestions = [
             </div>
           </div>
 
-          <!-- Right cards container -->
           <div class="relative flex-1">
             <div
               v-for="card in rightCards"
@@ -360,7 +349,6 @@ const suggestions = [
             </div>
           </div>
 
-          <!-- Central panda mascot -->
           <div
             class="absolute inset-0 flex items-center justify-center pointer-events-none"
             style="z-index: 10"
@@ -375,7 +363,6 @@ const suggestions = [
         </div>
       </div>
 
-      <!-- Search bar -->
       <div class="w-full max-w-2xl mt-4 md:mt-[-120px] px-4 sm:px-0">
         <label for="cheatsheet-search" class="sr-only"
           >Search cheatsheets</label
@@ -406,7 +393,6 @@ const suggestions = [
         </div>
       </div>
 
-      <!-- Suggestion pills -->
       <div class="flex flex-wrap justify-center gap-2 mt-5 pb-24 z-10">
         <button
           v-for="s in suggestions"

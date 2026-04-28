@@ -11,7 +11,7 @@ import {
   advancedTips,
   dockerOperations,
   configFiles,
-} from '~/data/docker.js'
+} from '~/data/content.js'
 </script>
 
 
@@ -30,7 +30,6 @@ import {
 
       <div class="flex flex-col lg:flex-row gap-4 lg:items-start">
 
-        <!-- Main content -->
         <div class="flex-1 min-w-0">
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-3 sm:px-0">
             <div>
@@ -65,7 +64,6 @@ import {
           </div>
         </div>
 
-        <!-- Sidebar -->
         <aside class="flex flex-col w-full lg:w-36 shrink-0 lg:sticky lg:top-20 gap-3 pb-6">
           <div class="flex flex-row lg:flex-col gap-3">
             <button type="button" class="flex items-center justify-center gap-1.5 flex-1 lg:flex-none px-3 py-2 rounded-lg text-xs font-semibold whitespace-nowrap" style="background-color: #59e1d3; color: #0d3b69;">

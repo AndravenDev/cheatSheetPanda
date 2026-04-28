@@ -41,14 +41,11 @@ const labelClass = computed(() => props.size === 'lg' ? 'text-white/70 text-[12p
 </script>
 
 <template>
-  <!-- Outer: rotation only (static) -->
   <div :style="{ transform: rotation ? `rotate(${rotation})` : undefined }">
-    <!-- Inner: float animation only -->
     <div
       class="animate-float"
       :style="{ animationDelay: delay ?? '0s' }"
     >
-      <!-- PNG mode -->
       <img
         v-if="image"
         :src="image"
@@ -61,7 +58,6 @@ const labelClass = computed(() => props.size === 'lg' ? 'text-white/70 text-[12p
         }"
       />
 
-      <!-- Icon mode -->
       <div
         v-else-if="icon"
         class="flex flex-col items-center justify-center gap-1.5 backdrop-blur-md border border-white/10 rounded-2xl hover:scale-110 transition-transform duration-300 cursor-default select-none"
