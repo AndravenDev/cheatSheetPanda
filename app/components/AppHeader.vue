@@ -24,7 +24,7 @@ const navLinks = [
       ? 'bg-navy-deep backdrop-blur-lg'
       : 'bg-navy-deep backdrop-blur-md'"
   >
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center gap-8">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center gap-8">
 
       <!-- Logo group -->
       <div class="flex items-center gap-2 shrink-0">

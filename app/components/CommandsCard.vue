@@ -23,11 +23,11 @@
         <div class="border border-gray-300 rounded-tr-lg rounded-br-lg rounded-bl-lg p-2">
             <ul v-if="type === 'commands'">
                 <li v-for="command in commands" :key="command.command" class="flex items-center gap-2 mb-2">
-                    <span class="bg-gray-100 rounded px-1.5 py-0.5 text-sm font-mono w-32 sm:w-44 shrink-0">{{ command.command }}</span>
-                    <span class="text-gray-600 text-sm">{{ command.description }}</span>
+                    <span class="bg-gray-100 rounded px-1.5 py-0.5 text-xs font-mono w-28 sm:w-36 shrink-0">{{ command.command }}</span>
+                    <span class="text-gray-600 text-xs">{{ command.description }}</span>
                 </li>
             </ul>
-            <ul v-else-if="type === 'tips'" class="list-disc pl-4 space-y-1">
+            <ul v-else-if="type === 'tips'" class="list-disc pl-4 space-y-1 text-xs">
                 <li v-for="(tip, i) in commands" :key="i">
                     {{ tip.description }}
                 </li>

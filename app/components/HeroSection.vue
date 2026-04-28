@@ -264,7 +264,7 @@ const suggestions = [
       >
     </div>
 
-    <div class="relative max-w-7xl mx-auto px-6 w-full flex flex-col items-center">
+    <div class="relative max-w-7xl mx-auto px-4 w-full flex flex-col items-center">
       <!-- Pill badge -->
       <div class="mt-2 mb-2 self-start">
         <span
